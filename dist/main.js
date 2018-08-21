@@ -7910,49 +7910,118 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Main$output = _elm_lang$core$Native_Platform.outgoingPort(
-	'output',
-	function (v) {
-		return {count: v.count, last: v.last};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 	});
-var _user$project$Main$updateCounter = F2(
-	function (count, last) {
-		var model = {count: count, last: last};
+var _user$project$Main$node = F4(
+	function (id, parent, x, y) {
 		return {
-			ctor: '_Tuple2',
-			_0: model,
-			_1: _user$project$Main$output(model)
+			data: {id: id, parent: parent},
+			position: {x: x, y: y}
 		};
 	});
-var _user$project$Main$init = A2(_user$project$Main$updateCounter, 0, 'init');
-var _user$project$Main$update = F2(
-	function (msg, _p0) {
-		var _p1 = _p0;
-		var _p3 = _p1.count;
-		var _p2 = msg;
-		if (_p2.ctor === 'Increment') {
-			return A2(_user$project$Main$updateCounter, _p3 + 1, 'increment');
-		} else {
-			return A2(_user$project$Main$updateCounter, _p3 - 1, 'decrement');
-		}
+var _user$project$Main$drawGraph = _elm_lang$core$Native_Platform.outgoingPort(
+	'drawGraph',
+	function (v) {
+		return {
+			nodes: _elm_lang$core$Native_List.toArray(v.nodes).map(
+				function (v) {
+					return {
+						data: {id: v.data.id, parent: v.data.parent},
+						position: {x: v.position.x, y: v.position.y}
+					};
+				})
+		};
 	});
+var _user$project$Main$init = function () {
+	var model = {
+		nodes: {
+			ctor: '::',
+			_0: A4(_user$project$Main$node, 'A', 'C', 0, 0),
+			_1: {
+				ctor: '::',
+				_0: A4(_user$project$Main$node, 'B', 'C', 50, 0),
+				_1: {
+					ctor: '::',
+					_0: A4(_user$project$Main$node, 'C', '', 0, 0),
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	};
+	return {
+		ctor: '_Tuple2',
+		_0: model,
+		_1: _user$project$Main$drawGraph(model)
+	};
+}();
 var _user$project$Main$input = _elm_lang$core$Native_Platform.incomingPort(
 	'input',
 	A2(
 		_elm_lang$core$Json_Decode$andThen,
-		function (count) {
-			return A2(
-				_elm_lang$core$Json_Decode$andThen,
-				function (last) {
-					return _elm_lang$core$Json_Decode$succeed(
-						{count: count, last: last});
-				},
-				A2(_elm_lang$core$Json_Decode$field, 'last', _elm_lang$core$Json_Decode$string));
+		function (nodes) {
+			return _elm_lang$core$Json_Decode$succeed(
+				{nodes: nodes});
 		},
-		A2(_elm_lang$core$Json_Decode$field, 'count', _elm_lang$core$Json_Decode$int)));
-var _user$project$Main$Model = F2(
+		A2(
+			_elm_lang$core$Json_Decode$field,
+			'nodes',
+			_elm_lang$core$Json_Decode$list(
+				A2(
+					_elm_lang$core$Json_Decode$andThen,
+					function (data) {
+						return A2(
+							_elm_lang$core$Json_Decode$andThen,
+							function (position) {
+								return _elm_lang$core$Json_Decode$succeed(
+									{data: data, position: position});
+							},
+							A2(
+								_elm_lang$core$Json_Decode$field,
+								'position',
+								A2(
+									_elm_lang$core$Json_Decode$andThen,
+									function (x) {
+										return A2(
+											_elm_lang$core$Json_Decode$andThen,
+											function (y) {
+												return _elm_lang$core$Json_Decode$succeed(
+													{x: x, y: y});
+											},
+											A2(_elm_lang$core$Json_Decode$field, 'y', _elm_lang$core$Json_Decode$int));
+									},
+									A2(_elm_lang$core$Json_Decode$field, 'x', _elm_lang$core$Json_Decode$int))));
+					},
+					A2(
+						_elm_lang$core$Json_Decode$field,
+						'data',
+						A2(
+							_elm_lang$core$Json_Decode$andThen,
+							function (id) {
+								return A2(
+									_elm_lang$core$Json_Decode$andThen,
+									function (parent) {
+										return _elm_lang$core$Json_Decode$succeed(
+											{id: id, parent: parent});
+									},
+									A2(_elm_lang$core$Json_Decode$field, 'parent', _elm_lang$core$Json_Decode$string));
+							},
+							A2(_elm_lang$core$Json_Decode$field, 'id', _elm_lang$core$Json_Decode$string))))))));
+var _user$project$Main$Model = function (a) {
+	return {nodes: a};
+};
+var _user$project$Main$Node = F2(
 	function (a, b) {
-		return {count: a, last: b};
+		return {data: a, position: b};
+	});
+var _user$project$Main$NodeData = F2(
+	function (a, b) {
+		return {id: a, parent: b};
+	});
+var _user$project$Main$NodePosition = F2(
+	function (a, b) {
+		return {x: a, y: b};
 	});
 var _user$project$Main$Decrement = {ctor: 'Decrement'};
 var _user$project$Main$Increment = {ctor: 'Increment'};
