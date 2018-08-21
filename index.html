@@ -1,0 +1,12 @@
+<h1>Corriendo desde index.html</h1>
+
+<div id="spelling"></div>
+<script src="main.js"></script>
+<script>
+    var app = Elm.Main.fullscreen();
+
+    app.ports.output.subscribe(function(count) {
+		document.getElementById("counter").innerHTML = count;
+    });
+</script>
+<h2>Count: <a id="counter"></a></h2>
