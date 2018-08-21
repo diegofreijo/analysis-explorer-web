@@ -1,5 +1,5 @@
 -- Test with
---      elm-live Main.elm --output main.js
+--      elm-live Main.elm --output dist/main.js
 
 
 port module Main exposing (..)
@@ -16,13 +16,15 @@ main =
 
 -- MODEL
 
-type alias Model =
-    Int
+type alias Model = { 
+        count: Int,
+        last: String
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    updateCounter 0
+    updateCounter 0 "init"
 
 
 
@@ -35,18 +37,21 @@ type Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
+update msg { count, last } =
     case msg of
         Increment ->
-            updateCounter (model + 1)
+            updateCounter (count + 1) "increment"
 
         Decrement ->
-            updateCounter (model - 1)
+            updateCounter (count - 1) "decrement"
 
 
-updateCounter : Model -> ( Model, Cmd msg )
-updateCounter model =
-    ( model, output model )
+updateCounter : Int -> String -> ( Model, Cmd msg )
+updateCounter count last =
+    let
+        model = { count = count, last = last }
+    in
+        ( model, output model )
 
 
 
@@ -65,10 +70,9 @@ view model =
 
 -- PORTS
 
-port output : Int -> Cmd msg
+port output : Model -> Cmd msg
 
-
-port input : (Int -> msg) -> Sub msg
+port input : (Model -> msg) -> Sub msg
 
 
 subscriptions : Model -> Sub Msg

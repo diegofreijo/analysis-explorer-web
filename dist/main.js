@@ -7913,26 +7913,47 @@ var _elm_lang$html$Html_Events$Options = F2(
 var _user$project$Main$output = _elm_lang$core$Native_Platform.outgoingPort(
 	'output',
 	function (v) {
-		return v;
+		return {count: v.count, last: v.last};
 	});
-var _user$project$Main$updateCounter = function (model) {
-	return {
-		ctor: '_Tuple2',
-		_0: model,
-		_1: _user$project$Main$output(model)
-	};
-};
-var _user$project$Main$init = _user$project$Main$updateCounter(0);
+var _user$project$Main$updateCounter = F2(
+	function (count, last) {
+		var model = {count: count, last: last};
+		return {
+			ctor: '_Tuple2',
+			_0: model,
+			_1: _user$project$Main$output(model)
+		};
+	});
+var _user$project$Main$init = A2(_user$project$Main$updateCounter, 0, 'init');
 var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'Increment') {
-			return _user$project$Main$updateCounter(model + 1);
+	function (msg, _p0) {
+		var _p1 = _p0;
+		var _p3 = _p1.count;
+		var _p2 = msg;
+		if (_p2.ctor === 'Increment') {
+			return A2(_user$project$Main$updateCounter, _p3 + 1, 'increment');
 		} else {
-			return _user$project$Main$updateCounter(model - 1);
+			return A2(_user$project$Main$updateCounter, _p3 - 1, 'decrement');
 		}
 	});
-var _user$project$Main$input = _elm_lang$core$Native_Platform.incomingPort('input', _elm_lang$core$Json_Decode$int);
+var _user$project$Main$input = _elm_lang$core$Native_Platform.incomingPort(
+	'input',
+	A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (count) {
+			return A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (last) {
+					return _elm_lang$core$Json_Decode$succeed(
+						{count: count, last: last});
+				},
+				A2(_elm_lang$core$Json_Decode$field, 'last', _elm_lang$core$Json_Decode$string));
+		},
+		A2(_elm_lang$core$Json_Decode$field, 'count', _elm_lang$core$Json_Decode$int)));
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {count: a, last: b};
+	});
 var _user$project$Main$Decrement = {ctor: 'Decrement'};
 var _user$project$Main$Increment = {ctor: 'Increment'};
 var _user$project$Main$view = function (model) {

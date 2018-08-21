@@ -54,7 +54,6 @@ var cy = window.cy = cytoscape({
     edges: [
       { data: { id: 'ad', source: 'a', target: 'd' } },
       { data: { id: 'eb', source: 'e', target: 'b' } }
-
     ]
   },
 
