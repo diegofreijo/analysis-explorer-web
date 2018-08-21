@@ -16,18 +16,13 @@ main =
 
 -- MODEL
 
-
 type alias Model =
     Int
 
 
 init : ( Model, Cmd Msg )
 init =
-    let
-        model =
-            0
-    in
-        ( model, output model )
+    updateCounter 0
 
 
 
@@ -69,9 +64,6 @@ view model =
 
 
 -- PORTS
--- port for sending strings out to JavaScript
--- port counter : Int -> Cmd msg
-
 
 port output : Int -> Cmd msg
 
@@ -83,8 +75,3 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     input (\x -> Increment)
 
-
-
--- port draw : String -> Cmd msg
--- port for listening for suggestions from JavaScript
--- port suggestions : (List String -> msg) -> Sub msg

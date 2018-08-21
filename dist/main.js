@@ -7915,14 +7915,6 @@ var _user$project$Main$output = _elm_lang$core$Native_Platform.outgoingPort(
 	function (v) {
 		return v;
 	});
-var _user$project$Main$init = function () {
-	var model = 0;
-	return {
-		ctor: '_Tuple2',
-		_0: model,
-		_1: _user$project$Main$output(model)
-	};
-}();
 var _user$project$Main$updateCounter = function (model) {
 	return {
 		ctor: '_Tuple2',
@@ -7930,6 +7922,7 @@ var _user$project$Main$updateCounter = function (model) {
 		_1: _user$project$Main$output(model)
 	};
 };
+var _user$project$Main$init = _user$project$Main$updateCounter(0);
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
