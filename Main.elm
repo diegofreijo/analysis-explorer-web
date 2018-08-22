@@ -48,14 +48,20 @@ type alias Model =
 
 type alias Node =
     { data : NodeData
+    , classes : NodeClass
     , position : NodePosition
     }
 
 
 type alias NodeData =
     { id : NodeId
-    , parent : NodeId
+    , name : String
+    , parent : Maybe NodeId
     }
+
+
+type alias NodeClass =
+    String
 
 
 type alias NodeId =
@@ -81,6 +87,27 @@ type alias Edge =
     }
 
 
+
+-- CONSTANTS
+
+
+emptyModel : Model
+emptyModel =
+    { nodes = [], edges = [] }
+
+
+instructionClass =
+    "instruction"
+
+
+methodClass =
+    "method"
+
+
+
+-- INIT
+
+
 init : ( Model, Cmd Msg )
 init =
     let
@@ -90,59 +117,57 @@ init =
                     convertEsg jsonEsg
 
                 Err error ->
+                    -- TODO: Improve this error handling
                     emptyModel
-
-        -- { nodes =
-        --     [ node "A" "M1" 0 0
-        --     , node "B" "M1" 0 0
-        --     , node "M1" "" 0 0
-        --     , node "X" "M2" 0 0
-        --     , node "Y" "M2" 0 0
-        --     , node "M2" "" 0 0
-        --     ]
-        -- , edges =
-        --     [ edge "AB" "A" "B"
-        --     , edge "XY" "X" "Y"
-        --     , edge "AX" "A" "X"
-        --     , edge "YB" "Y" "B"
-        --     , edge "M1M2" "M1" "M2"
-        --     , edge "M2X" "M2" "X"
-        --     ]
-        -- }
     in
         ( model, drawCytoscape model )
 
 
 convertEsg : JsonESG -> Model
 convertEsg { methods } =
-    List.foldr 
-        (\m acc -> Model 
-            (List.append m.nodes acc.nodes)
-            (List.append m.edges acc.edges)
+    List.foldr
+        (\m acc ->
+            Model
+                (List.append m.nodes acc.nodes)
+                (List.append m.edges acc.edges)
         )
         emptyModel
         (List.map convertEg methods)
 
--- case  of
--- Just m ->
---     case (convertEg m) of
---         ( nodes, edges ) ->
---             Model nodes edges
--- Nothing ->
---     -- TODO: Improve this
---     emptyModel
-
 
 convertEg : JsonEG -> Model
-convertEg { nodes, edges } =
-    { nodes = List.map convertNode nodes
-    , edges = List.map convertEdge edges
+convertEg { name, nodes, edges } =
+    let
+        methodNode =
+            createMethodNode name name
+    in
+        { nodes =
+            methodNode
+                :: List.map (convertInstructionNode name) nodes
+        , edges = List.map convertEdge edges
+        }
+
+
+createMethodNode : String -> NodeId -> Node
+createMethodNode name id =
+    { data =
+        { id = id
+        , name = "Method:\n" ++ name
+        , parent = Nothing
+        }
+    , classes = methodClass
+    , position = { x = 0, y = 0 }
     }
 
 
-convertNode : JsonNode -> Node
-convertNode { id, kind } =
-    { data = { id = toString id, parent = "" }
+convertInstructionNode : NodeId -> JsonNode -> Node
+convertInstructionNode parent { id, kind } =
+    { data =
+        { id = toString id
+        , name = "Instruction:\n" ++ toString id
+        , parent = Just parent
+        }
+    , classes = instructionClass
     , position = { x = 0, y = 0 }
     }
 
@@ -162,30 +187,6 @@ convertEdge { origin, destination } =
             , target = target
             }
         }
-
-
-
--- node : NodeId -> NodeId -> Int -> Int -> Node
--- node id parent x y =
---     { data =
---         { id = id
---         , parent = ""
---         }
---     , position = { x = x, y = y }
---     }
--- edge : EdgeId -> NodeId -> NodeId -> Edge
--- edge id source target =
---     { data =
---         { id = id
---         , source = source
---         , target = target
---         }
---     }
-
-
-emptyModel : Model
-emptyModel =
-    { nodes = [], edges = [] }
 
 
 

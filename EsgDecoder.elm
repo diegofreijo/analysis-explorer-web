@@ -1,6 +1,6 @@
 module EsgDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
 
-import Json.Decode exposing (Decoder, decodeString, field, int, list, map, map2)
+import Json.Decode exposing (Decoder, decodeString, field, int, list, map, map2, map3, string)
 
 
 -- MODEL
@@ -11,7 +11,8 @@ type alias JsonESG =
 
 
 type alias JsonEG =
-    { nodes : List JsonNode
+    { name : String
+    , nodes : List JsonNode
     , edges : List JsonEdge
     }
 
@@ -45,7 +46,8 @@ esgDecoder =
 
 egDecoder : Decoder JsonEG
 egDecoder =
-    map2 JsonEG
+    map3 JsonEG
+        (field "Name" string)
         (field "Nodes" (list nodeDecoder))
         (field "Edges" (list edgeDecoder))
 
@@ -66,10 +68,10 @@ edgeDecoder =
 
 jsonStringTest : String
 jsonStringTest =
-    """
-    {
+    """{
     "Methods": [
         {
+            "Name": "M1",
             "Nodes": [
                 {
                     "Id": 0,
@@ -176,6 +178,7 @@ jsonStringTest =
             ]
         },
         {
+            "Name": "M2",
             "Nodes": [
                 {
                     "Id": 10,
@@ -246,6 +249,7 @@ jsonStringTest =
             ]
         },
         {
+            "Name": "M3",
             "Nodes": [
                 {
                     "Id": 16,
@@ -384,6 +388,7 @@ jsonStringTest =
             ]
         },
         {
+            "Name": "M4",
             "Nodes": [
                 {
                     "Id": 31,

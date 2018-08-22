@@ -7795,13 +7795,13 @@ var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
 
-var _user$project$EsgDecoder$jsonStringTest = '\n    {\n    \"Methods\": [\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 0,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 1,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 2,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 3,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 4,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 5,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 6,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 7,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 8,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 9,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 43,\n                    \"Kind\": 3\n                },\n                {\n                    \"Id\": 44,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 0,\n                    \"Destination\": 2\n                },\n                {\n                    \"Origin\": 2,\n                    \"Destination\": 3\n                },\n                {\n                    \"Origin\": 3,\n                    \"Destination\": 4\n                },\n                {\n                    \"Origin\": 4,\n                    \"Destination\": 43\n                },\n                {\n                    \"Origin\": 4,\n                    \"Destination\": 10\n                },\n                {\n                    \"Origin\": 5,\n                    \"Destination\": 6\n                },\n                {\n                    \"Origin\": 6,\n                    \"Destination\": 7\n                },\n                {\n                    \"Origin\": 7,\n                    \"Destination\": 8\n                },\n                {\n                    \"Origin\": 8,\n                    \"Destination\": 44\n                },\n                {\n                    \"Origin\": 8,\n                    \"Destination\": 16\n                },\n                {\n                    \"Origin\": 9,\n                    \"Destination\": 1\n                },\n                {\n                    \"Origin\": 43,\n                    \"Destination\": 5\n                },\n                {\n                    \"Origin\": 44,\n                    \"Destination\": 9\n                }\n            ]\n        },\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 10,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 11,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 12,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 13,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 14,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 15,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 45,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 10,\n                    \"Destination\": 12\n                },\n                {\n                    \"Origin\": 11,\n                    \"Destination\": 43\n                },\n                {\n                    \"Origin\": 11,\n                    \"Destination\": 45\n                },\n                {\n                    \"Origin\": 12,\n                    \"Destination\": 13\n                },\n                {\n                    \"Origin\": 13,\n                    \"Destination\": 45\n                },\n                {\n                    \"Origin\": 13,\n                    \"Destination\": 10\n                },\n                {\n                    \"Origin\": 14,\n                    \"Destination\": 15\n                },\n                {\n                    \"Origin\": 15,\n                    \"Destination\": 11\n                },\n                {\n                    \"Origin\": 45,\n                    \"Destination\": 14\n                }\n            ]\n        },\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 16,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 17,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 18,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 19,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 20,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 21,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 22,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 23,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 24,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 25,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 26,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 27,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 28,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 29,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 30,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 46,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 16,\n                    \"Destination\": 18\n                },\n                {\n                    \"Origin\": 17,\n                    \"Destination\": 44\n                },\n                {\n                    \"Origin\": 18,\n                    \"Destination\": 19\n                },\n                {\n                    \"Origin\": 19,\n                    \"Destination\": 20\n                },\n                {\n                    \"Origin\": 20,\n                    \"Destination\": 21\n                },\n                {\n                    \"Origin\": 21,\n                    \"Destination\": 22\n                },\n                {\n                    \"Origin\": 22,\n                    \"Destination\": 46\n                },\n                {\n                    \"Origin\": 22,\n                    \"Destination\": 31\n                },\n                {\n                    \"Origin\": 23,\n                    \"Destination\": 24\n                },\n                {\n                    \"Origin\": 24,\n                    \"Destination\": 25\n                },\n                {\n                    \"Origin\": 25,\n                    \"Destination\": 26\n                },\n                {\n                    \"Origin\": 26,\n                    \"Destination\": 27\n                },\n                {\n                    \"Origin\": 27,\n                    \"Destination\": 28\n                },\n                {\n                    \"Origin\": 28,\n                    \"Destination\": 29\n                },\n                {\n                    \"Origin\": 29,\n                    \"Destination\": 30\n                },\n                {\n                    \"Origin\": 30,\n                    \"Destination\": 17\n                },\n                {\n                    \"Origin\": 46,\n                    \"Destination\": 23\n                }\n            ]\n        },\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 31,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 32,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 33,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 34,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 35,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 36,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 37,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 38,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 39,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 40,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 41,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 42,\n                    \"Kind\": 1\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 31,\n                    \"Destination\": 33\n                },\n                {\n                    \"Origin\": 32,\n                    \"Destination\": 46\n                },\n                {\n                    \"Origin\": 33,\n                    \"Destination\": 34\n                },\n                {\n                    \"Origin\": 34,\n                    \"Destination\": 35\n                },\n                {\n                    \"Origin\": 35,\n                    \"Destination\": 36\n                },\n                {\n                    \"Origin\": 36,\n                    \"Destination\": 37\n                },\n                {\n                    \"Origin\": 37,\n                    \"Destination\": 38\n                },\n                {\n                    \"Origin\": 38,\n                    \"Destination\": 39\n                },\n                {\n                    \"Origin\": 39,\n                    \"Destination\": 40\n                },\n                {\n                    \"Origin\": 40,\n                    \"Destination\": 41\n                },\n                {\n                    \"Origin\": 41,\n                    \"Destination\": 42\n                },\n                {\n                    \"Origin\": 42,\n                    \"Destination\": 32\n                }\n            ]\n        }\n    ]\n}\n\n';
+var _user$project$EsgDecoder$jsonStringTest = '{\n    \"Methods\": [\n        {\n            \"Name\": \"M1\",\n            \"Nodes\": [\n                {\n                    \"Id\": 0,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 1,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 2,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 3,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 4,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 5,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 6,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 7,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 8,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 9,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 43,\n                    \"Kind\": 3\n                },\n                {\n                    \"Id\": 44,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 0,\n                    \"Destination\": 2\n                },\n                {\n                    \"Origin\": 2,\n                    \"Destination\": 3\n                },\n                {\n                    \"Origin\": 3,\n                    \"Destination\": 4\n                },\n                {\n                    \"Origin\": 4,\n                    \"Destination\": 43\n                },\n                {\n                    \"Origin\": 4,\n                    \"Destination\": 10\n                },\n                {\n                    \"Origin\": 5,\n                    \"Destination\": 6\n                },\n                {\n                    \"Origin\": 6,\n                    \"Destination\": 7\n                },\n                {\n                    \"Origin\": 7,\n                    \"Destination\": 8\n                },\n                {\n                    \"Origin\": 8,\n                    \"Destination\": 44\n                },\n                {\n                    \"Origin\": 8,\n                    \"Destination\": 16\n                },\n                {\n                    \"Origin\": 9,\n                    \"Destination\": 1\n                },\n                {\n                    \"Origin\": 43,\n                    \"Destination\": 5\n                },\n                {\n                    \"Origin\": 44,\n                    \"Destination\": 9\n                }\n            ]\n        },\n        {\n            \"Name\": \"M2\",\n            \"Nodes\": [\n                {\n                    \"Id\": 10,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 11,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 12,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 13,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 14,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 15,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 45,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 10,\n                    \"Destination\": 12\n                },\n                {\n                    \"Origin\": 11,\n                    \"Destination\": 43\n                },\n                {\n                    \"Origin\": 11,\n                    \"Destination\": 45\n                },\n                {\n                    \"Origin\": 12,\n                    \"Destination\": 13\n                },\n                {\n                    \"Origin\": 13,\n                    \"Destination\": 45\n                },\n                {\n                    \"Origin\": 13,\n                    \"Destination\": 10\n                },\n                {\n                    \"Origin\": 14,\n                    \"Destination\": 15\n                },\n                {\n                    \"Origin\": 15,\n                    \"Destination\": 11\n                },\n                {\n                    \"Origin\": 45,\n                    \"Destination\": 14\n                }\n            ]\n        },\n        {\n            \"Name\": \"M3\",\n            \"Nodes\": [\n                {\n                    \"Id\": 16,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 17,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 18,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 19,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 20,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 21,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 22,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 23,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 24,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 25,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 26,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 27,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 28,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 29,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 30,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 46,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 16,\n                    \"Destination\": 18\n                },\n                {\n                    \"Origin\": 17,\n                    \"Destination\": 44\n                },\n                {\n                    \"Origin\": 18,\n                    \"Destination\": 19\n                },\n                {\n                    \"Origin\": 19,\n                    \"Destination\": 20\n                },\n                {\n                    \"Origin\": 20,\n                    \"Destination\": 21\n                },\n                {\n                    \"Origin\": 21,\n                    \"Destination\": 22\n                },\n                {\n                    \"Origin\": 22,\n                    \"Destination\": 46\n                },\n                {\n                    \"Origin\": 22,\n                    \"Destination\": 31\n                },\n                {\n                    \"Origin\": 23,\n                    \"Destination\": 24\n                },\n                {\n                    \"Origin\": 24,\n                    \"Destination\": 25\n                },\n                {\n                    \"Origin\": 25,\n                    \"Destination\": 26\n                },\n                {\n                    \"Origin\": 26,\n                    \"Destination\": 27\n                },\n                {\n                    \"Origin\": 27,\n                    \"Destination\": 28\n                },\n                {\n                    \"Origin\": 28,\n                    \"Destination\": 29\n                },\n                {\n                    \"Origin\": 29,\n                    \"Destination\": 30\n                },\n                {\n                    \"Origin\": 30,\n                    \"Destination\": 17\n                },\n                {\n                    \"Origin\": 46,\n                    \"Destination\": 23\n                }\n            ]\n        },\n        {\n            \"Name\": \"M4\",\n            \"Nodes\": [\n                {\n                    \"Id\": 31,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 32,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 33,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 34,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 35,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 36,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 37,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 38,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 39,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 40,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 41,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 42,\n                    \"Kind\": 1\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 31,\n                    \"Destination\": 33\n                },\n                {\n                    \"Origin\": 32,\n                    \"Destination\": 46\n                },\n                {\n                    \"Origin\": 33,\n                    \"Destination\": 34\n                },\n                {\n                    \"Origin\": 34,\n                    \"Destination\": 35\n                },\n                {\n                    \"Origin\": 35,\n                    \"Destination\": 36\n                },\n                {\n                    \"Origin\": 36,\n                    \"Destination\": 37\n                },\n                {\n                    \"Origin\": 37,\n                    \"Destination\": 38\n                },\n                {\n                    \"Origin\": 38,\n                    \"Destination\": 39\n                },\n                {\n                    \"Origin\": 39,\n                    \"Destination\": 40\n                },\n                {\n                    \"Origin\": 40,\n                    \"Destination\": 41\n                },\n                {\n                    \"Origin\": 41,\n                    \"Destination\": 42\n                },\n                {\n                    \"Origin\": 42,\n                    \"Destination\": 32\n                }\n            ]\n        }\n    ]\n}\n\n';
 var _user$project$EsgDecoder$JsonESG = function (a) {
 	return {methods: a};
 };
-var _user$project$EsgDecoder$JsonEG = F2(
-	function (a, b) {
-		return {nodes: a, edges: b};
+var _user$project$EsgDecoder$JsonEG = F3(
+	function (a, b, c) {
+		return {name: a, nodes: b, edges: c};
 	});
 var _user$project$EsgDecoder$JsonNode = F2(
 	function (a, b) {
@@ -7821,9 +7821,10 @@ var _user$project$EsgDecoder$edgeDecoder = A3(
 	_user$project$EsgDecoder$JsonEdge,
 	A2(_elm_lang$core$Json_Decode$field, 'Origin', _elm_lang$core$Json_Decode$int),
 	A2(_elm_lang$core$Json_Decode$field, 'Destination', _elm_lang$core$Json_Decode$int));
-var _user$project$EsgDecoder$egDecoder = A3(
-	_elm_lang$core$Json_Decode$map2,
+var _user$project$EsgDecoder$egDecoder = A4(
+	_elm_lang$core$Json_Decode$map3,
 	_user$project$EsgDecoder$JsonEG,
+	A2(_elm_lang$core$Json_Decode$field, 'Name', _elm_lang$core$Json_Decode$string),
 	A2(
 		_elm_lang$core$Json_Decode$field,
 		'Nodes',
@@ -7854,10 +7855,6 @@ var _user$project$Main$update = F2(
 	function (msg, model) {
 		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 	});
-var _user$project$Main$emptyModel = {
-	nodes: {ctor: '[]'},
-	edges: {ctor: '[]'}
-};
 var _user$project$Main$convertEdge = function (_p0) {
 	var _p1 = _p0;
 	var target = _elm_lang$core$Basics$toString(_p1.destination);
@@ -7871,22 +7868,56 @@ var _user$project$Main$convertEdge = function (_p0) {
 		}
 	};
 };
-var _user$project$Main$convertNode = function (_p2) {
-	var _p3 = _p2;
+var _user$project$Main$methodClass = 'method';
+var _user$project$Main$createMethodNode = F2(
+	function (name, id) {
+		return {
+			data: {
+				id: id,
+				name: A2(_elm_lang$core$Basics_ops['++'], 'Method:\n', name),
+				parent: _elm_lang$core$Maybe$Nothing
+			},
+			classes: _user$project$Main$methodClass,
+			position: {x: 0, y: 0}
+		};
+	});
+var _user$project$Main$instructionClass = 'instruction';
+var _user$project$Main$convertInstructionNode = F2(
+	function (parent, _p2) {
+		var _p3 = _p2;
+		var _p4 = _p3.id;
+		return {
+			data: {
+				id: _elm_lang$core$Basics$toString(_p4),
+				name: A2(
+					_elm_lang$core$Basics_ops['++'],
+					'Instruction:\n',
+					_elm_lang$core$Basics$toString(_p4)),
+				parent: _elm_lang$core$Maybe$Just(parent)
+			},
+			classes: _user$project$Main$instructionClass,
+			position: {x: 0, y: 0}
+		};
+	});
+var _user$project$Main$convertEg = function (_p5) {
+	var _p6 = _p5;
+	var _p7 = _p6.name;
+	var methodNode = A2(_user$project$Main$createMethodNode, _p7, _p7);
 	return {
-		data: {
-			id: _elm_lang$core$Basics$toString(_p3.id),
-			parent: ''
+		nodes: {
+			ctor: '::',
+			_0: methodNode,
+			_1: A2(
+				_elm_lang$core$List$map,
+				_user$project$Main$convertInstructionNode(_p7),
+				_p6.nodes)
 		},
-		position: {x: 0, y: 0}
+		edges: A2(_elm_lang$core$List$map, _user$project$Main$convertEdge, _p6.edges)
 	};
 };
-var _user$project$Main$convertEg = function (_p4) {
-	var _p5 = _p4;
-	return {
-		nodes: A2(_elm_lang$core$List$map, _user$project$Main$convertNode, _p5.nodes),
-		edges: A2(_elm_lang$core$List$map, _user$project$Main$convertEdge, _p5.edges)
-	};
+var _user$project$Main$emptyModel = {
+	nodes: {ctor: '[]'},
+	edges: {ctor: '[]'}
 };
 var _user$project$Main$drawCytoscape = _elm_lang$core$Native_Platform.outgoingPort(
 	'drawCytoscape',
@@ -7895,7 +7926,12 @@ var _user$project$Main$drawCytoscape = _elm_lang$core$Native_Platform.outgoingPo
 			nodes: _elm_lang$core$Native_List.toArray(v.nodes).map(
 				function (v) {
 					return {
-						data: {id: v.data.id, parent: v.data.parent},
+						data: {
+							id: v.data.id,
+							name: v.data.name,
+							parent: (v.data.parent.ctor === 'Nothing') ? null : v.data.parent._0
+						},
+						classes: v.classes,
 						position: {x: v.position.x, y: v.position.y}
 					};
 				}),
@@ -7911,8 +7947,8 @@ var _user$project$Main$Model = F2(
 	function (a, b) {
 		return {nodes: a, edges: b};
 	});
-var _user$project$Main$convertEsg = function (_p6) {
-	var _p7 = _p6;
+var _user$project$Main$convertEsg = function (_p8) {
+	var _p9 = _p8;
 	return A3(
 		_elm_lang$core$List$foldr,
 		F2(
@@ -7923,13 +7959,13 @@ var _user$project$Main$convertEsg = function (_p6) {
 					A2(_elm_lang$core$List$append, m.edges, acc.edges));
 			}),
 		_user$project$Main$emptyModel,
-		A2(_elm_lang$core$List$map, _user$project$Main$convertEg, _p7.methods));
+		A2(_elm_lang$core$List$map, _user$project$Main$convertEg, _p9.methods));
 };
 var _user$project$Main$init = function () {
 	var model = function () {
-		var _p8 = _user$project$EsgDecoder$decode;
-		if (_p8.ctor === 'Ok') {
-			return _user$project$Main$convertEsg(_p8._0);
+		var _p10 = _user$project$EsgDecoder$decode;
+		if (_p10.ctor === 'Ok') {
+			return _user$project$Main$convertEsg(_p10._0);
 		} else {
 			return _user$project$Main$emptyModel;
 		}
@@ -7942,13 +7978,13 @@ var _user$project$Main$init = function () {
 }();
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
-var _user$project$Main$Node = F2(
-	function (a, b) {
-		return {data: a, position: b};
+var _user$project$Main$Node = F3(
+	function (a, b, c) {
+		return {data: a, classes: b, position: c};
 	});
-var _user$project$Main$NodeData = F2(
-	function (a, b) {
-		return {id: a, parent: b};
+var _user$project$Main$NodeData = F3(
+	function (a, b, c) {
+		return {id: a, name: b, parent: c};
 	});
 var _user$project$Main$NodePosition = F2(
 	function (a, b) {
