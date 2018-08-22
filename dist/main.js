@@ -7799,9 +7799,10 @@ var _user$project$EsgDecoder$jsonStringTest = '\n    {\n    \"Methods\": [\n    
 var _user$project$EsgDecoder$JsonESG = function (a) {
 	return {methods: a};
 };
-var _user$project$EsgDecoder$JsonEG = function (a) {
-	return {nodes: a};
-};
+var _user$project$EsgDecoder$JsonEG = F2(
+	function (a, b) {
+		return {nodes: a, edges: b};
+	});
 var _user$project$EsgDecoder$JsonNode = F2(
 	function (a, b) {
 		return {id: a, kind: b};
@@ -7811,13 +7812,26 @@ var _user$project$EsgDecoder$nodeDecoder = A3(
 	_user$project$EsgDecoder$JsonNode,
 	A2(_elm_lang$core$Json_Decode$field, 'Id', _elm_lang$core$Json_Decode$int),
 	A2(_elm_lang$core$Json_Decode$field, 'Kind', _elm_lang$core$Json_Decode$int));
-var _user$project$EsgDecoder$egDecoder = A2(
-	_elm_lang$core$Json_Decode$map,
+var _user$project$EsgDecoder$JsonEdge = F2(
+	function (a, b) {
+		return {origin: a, destination: b};
+	});
+var _user$project$EsgDecoder$edgeDecoder = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$EsgDecoder$JsonEdge,
+	A2(_elm_lang$core$Json_Decode$field, 'Origin', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'Destination', _elm_lang$core$Json_Decode$int));
+var _user$project$EsgDecoder$egDecoder = A3(
+	_elm_lang$core$Json_Decode$map2,
 	_user$project$EsgDecoder$JsonEG,
 	A2(
 		_elm_lang$core$Json_Decode$field,
 		'Nodes',
-		_elm_lang$core$Json_Decode$list(_user$project$EsgDecoder$nodeDecoder)));
+		_elm_lang$core$Json_Decode$list(_user$project$EsgDecoder$nodeDecoder)),
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'Edges',
+		_elm_lang$core$Json_Decode$list(_user$project$EsgDecoder$edgeDecoder)));
 var _user$project$EsgDecoder$esgDecoder = A2(
 	_elm_lang$core$Json_Decode$map,
 	_user$project$EsgDecoder$JsonESG,
@@ -7844,35 +7858,34 @@ var _user$project$Main$emptyModel = {
 	nodes: {ctor: '[]'},
 	edges: {ctor: '[]'}
 };
-var _user$project$Main$edge = F3(
-	function (id, source, target) {
-		return {
-			data: {id: id, source: source, target: target}
-		};
-	});
-var _user$project$Main$node = F4(
-	function (id, parent, x, y) {
-		return {
-			data: {id: id, parent: ''},
-			position: {x: x, y: y}
-		};
-	});
-var _user$project$Main$convertNode = function (_p0) {
+var _user$project$Main$convertEdge = function (_p0) {
 	var _p1 = _p0;
+	var target = _elm_lang$core$Basics$toString(_p1.destination);
+	var source = _elm_lang$core$Basics$toString(_p1.origin);
 	return {
 		data: {
-			id: _elm_lang$core$Basics$toString(_p1.id),
+			id: _elm_lang$core$Basics$toString(
+				A2(_elm_lang$core$Basics_ops['++'], source, target)),
+			source: source,
+			target: target
+		}
+	};
+};
+var _user$project$Main$convertNode = function (_p2) {
+	var _p3 = _p2;
+	return {
+		data: {
+			id: _elm_lang$core$Basics$toString(_p3.id),
 			parent: ''
 		},
 		position: {x: 0, y: 0}
 	};
 };
-var _user$project$Main$convertEg = function (_p2) {
-	var _p3 = _p2;
+var _user$project$Main$convertEg = function (_p4) {
+	var _p5 = _p4;
 	return {
-		ctor: '_Tuple2',
-		_0: A2(_elm_lang$core$List$map, _user$project$Main$convertNode, _p3.nodes),
-		_1: {ctor: '[]'}
+		nodes: A2(_elm_lang$core$List$map, _user$project$Main$convertNode, _p5.nodes),
+		edges: A2(_elm_lang$core$List$map, _user$project$Main$convertEdge, _p5.edges)
 	};
 };
 var _user$project$Main$drawCytoscape = _elm_lang$core$Native_Platform.outgoingPort(
@@ -7898,15 +7911,19 @@ var _user$project$Main$Model = F2(
 	function (a, b) {
 		return {nodes: a, edges: b};
 	});
-var _user$project$Main$convertEsg = function (_p4) {
-	var _p5 = _p4;
-	var _p6 = _elm_lang$core$List$head(_p5.methods);
-	if (_p6.ctor === 'Just') {
-		var _p7 = _user$project$Main$convertEg(_p6._0);
-		return A2(_user$project$Main$Model, _p7._0, _p7._1);
-	} else {
-		return _user$project$Main$emptyModel;
-	}
+var _user$project$Main$convertEsg = function (_p6) {
+	var _p7 = _p6;
+	return A3(
+		_elm_lang$core$List$foldr,
+		F2(
+			function (m, acc) {
+				return A2(
+					_user$project$Main$Model,
+					A2(_elm_lang$core$List$append, m.nodes, acc.nodes),
+					A2(_elm_lang$core$List$append, m.edges, acc.edges));
+			}),
+		_user$project$Main$emptyModel,
+		A2(_elm_lang$core$List$map, _user$project$Main$convertEg, _p7.methods));
 };
 var _user$project$Main$init = function () {
 	var model = function () {

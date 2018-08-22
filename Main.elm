@@ -5,7 +5,7 @@
 port module Main exposing (..)
 
 import Html exposing (div, button, text)
-import EsgDecoder exposing (decode, JsonESG, JsonEG, JsonNode)
+import EsgDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
 
 
 -- import Html.Events exposing (onClick)
@@ -14,7 +14,12 @@ import EsgDecoder exposing (decode, JsonESG, JsonEG, JsonNode)
 
 main : Program Never Model Msg
 main =
-    Html.program { init = init, view = view, update = update, subscriptions = subscriptions }
+    Html.program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
 
 
 
@@ -110,18 +115,30 @@ init =
 
 convertEsg : JsonESG -> Model
 convertEsg { methods } =
-    case List.head methods of
-        Just m ->
-            case (convertEg m) of
-                (nodes, edges) ->
-                    Model nodes edges
-        Nothing ->
-            emptyModel
+    List.foldr 
+        (\m acc -> Model 
+            (List.append m.nodes acc.nodes)
+            (List.append m.edges acc.edges)
+        )
+        emptyModel
+        (List.map convertEg methods)
+
+-- case  of
+-- Just m ->
+--     case (convertEg m) of
+--         ( nodes, edges ) ->
+--             Model nodes edges
+-- Nothing ->
+--     -- TODO: Improve this
+--     emptyModel
 
 
-convertEg : JsonEG -> (List Node, List Edge)
-convertEg { nodes } = 
-    ( List.map convertNode nodes, [])
+convertEg : JsonEG -> Model
+convertEg { nodes, edges } =
+    { nodes = List.map convertNode nodes
+    , edges = List.map convertEdge edges
+    }
+
 
 convertNode : JsonNode -> Node
 convertNode { id, kind } =
@@ -130,25 +147,46 @@ convertNode { id, kind } =
     }
 
 
-node : NodeId -> NodeId -> Int -> Int -> Node
-node id parent x y =
-    { data = { id = id, parent = "" }
-    , position = { x = x, y = y }
-    }
+convertEdge : JsonEdge -> Edge
+convertEdge { origin, destination } =
+    let
+        source =
+            (toString origin)
 
-
-edge : EdgeId -> NodeId -> NodeId -> Edge
-edge id source target =
-    { data =
-        { id = id
-        , source = source
-        , target = target
+        target =
+            (toString destination)
+    in
+        { data =
+            { id = toString (source ++ target)
+            , source = source
+            , target = target
+            }
         }
-    }
+
+
+
+-- node : NodeId -> NodeId -> Int -> Int -> Node
+-- node id parent x y =
+--     { data =
+--         { id = id
+--         , parent = ""
+--         }
+--     , position = { x = x, y = y }
+--     }
+-- edge : EdgeId -> NodeId -> NodeId -> Edge
+-- edge id source target =
+--     { data =
+--         { id = id
+--         , source = source
+--         , target = target
+--         }
+--     }
+
 
 emptyModel : Model
-emptyModel = 
+emptyModel =
     { nodes = [], edges = [] }
+
 
 
 -- UPDATE
