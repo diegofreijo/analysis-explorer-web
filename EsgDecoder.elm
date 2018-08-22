@@ -1,9 +1,8 @@
-module EsgDecoder exposing (decode)
+module EsgDecoder exposing (decode, JsonESG, JsonEG, JsonNode)
 
 import Json.Decode exposing (Decoder, decodeString, field, int, list, map, map2)
 
 
--- import Json.Decode.Pipeline exposing (required, optional, hardcoded)
 -- MODEL
 
 
@@ -45,17 +44,6 @@ nodeDecoder =
         (field "Id" int)
         (field "Kind" int)
 
-
-
--- decodeESG : Json.Decode.Decoder ESG
--- decodeESG =
---     Json.Decode.map ESG
---         (field "methods" Json.Decode.list decodeComplexType)
--- encodeESG : ESG -> Json.Encode.Value
--- encodeESG record =
---     Json.Encode.object
---         [ ( "methods", Json.Encode.list <| List.map encodeComplexType <| record.methods )
---         ]
 
 
 jsonStringTest : String

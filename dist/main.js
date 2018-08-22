@@ -7840,6 +7840,10 @@ var _user$project$Main$update = F2(
 	function (msg, model) {
 		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 	});
+var _user$project$Main$emptyModel = {
+	nodes: {ctor: '[]'},
+	edges: {ctor: '[]'}
+};
 var _user$project$Main$edge = F3(
 	function (id, source, target) {
 		return {
@@ -7853,9 +7857,24 @@ var _user$project$Main$node = F4(
 			position: {x: x, y: y}
 		};
 	});
-var _user$project$Main$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
-	_elm_lang$html$Html$text(
-		_elm_lang$core$Basics$toString(_user$project$EsgDecoder$decode)));
+var _user$project$Main$convertNode = function (_p0) {
+	var _p1 = _p0;
+	return {
+		data: {
+			id: _elm_lang$core$Basics$toString(_p1.id),
+			parent: ''
+		},
+		position: {x: 0, y: 0}
+	};
+};
+var _user$project$Main$convertEg = function (_p2) {
+	var _p3 = _p2;
+	return {
+		ctor: '_Tuple2',
+		_0: A2(_elm_lang$core$List$map, _user$project$Main$convertNode, _p3.nodes),
+		_1: {ctor: '[]'}
+	};
+};
 var _user$project$Main$drawCytoscape = _elm_lang$core$Native_Platform.outgoingPort(
 	'drawCytoscape',
 	function (v) {
@@ -7875,69 +7894,37 @@ var _user$project$Main$drawCytoscape = _elm_lang$core$Native_Platform.outgoingPo
 				})
 		};
 	});
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {nodes: a, edges: b};
+	});
+var _user$project$Main$convertEsg = function (_p4) {
+	var _p5 = _p4;
+	var _p6 = _elm_lang$core$List$head(_p5.methods);
+	if (_p6.ctor === 'Just') {
+		var _p7 = _user$project$Main$convertEg(_p6._0);
+		return A2(_user$project$Main$Model, _p7._0, _p7._1);
+	} else {
+		return _user$project$Main$emptyModel;
+	}
+};
 var _user$project$Main$init = function () {
-	var model = {
-		nodes: {
-			ctor: '::',
-			_0: A4(_user$project$Main$node, 'A', 'M1', 0, 0),
-			_1: {
-				ctor: '::',
-				_0: A4(_user$project$Main$node, 'B', 'M1', 0, 0),
-				_1: {
-					ctor: '::',
-					_0: A4(_user$project$Main$node, 'M1', '', 0, 0),
-					_1: {
-						ctor: '::',
-						_0: A4(_user$project$Main$node, 'X', 'M2', 0, 0),
-						_1: {
-							ctor: '::',
-							_0: A4(_user$project$Main$node, 'Y', 'M2', 0, 0),
-							_1: {
-								ctor: '::',
-								_0: A4(_user$project$Main$node, 'M2', '', 0, 0),
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}
-			}
-		},
-		edges: {
-			ctor: '::',
-			_0: A3(_user$project$Main$edge, 'AB', 'A', 'B'),
-			_1: {
-				ctor: '::',
-				_0: A3(_user$project$Main$edge, 'XY', 'X', 'Y'),
-				_1: {
-					ctor: '::',
-					_0: A3(_user$project$Main$edge, 'AX', 'A', 'X'),
-					_1: {
-						ctor: '::',
-						_0: A3(_user$project$Main$edge, 'YB', 'Y', 'B'),
-						_1: {
-							ctor: '::',
-							_0: A3(_user$project$Main$edge, 'M1M2', 'M1', 'M2'),
-							_1: {
-								ctor: '::',
-								_0: A3(_user$project$Main$edge, 'M2X', 'M2', 'X'),
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}
-			}
+	var model = function () {
+		var _p8 = _user$project$EsgDecoder$decode;
+		if (_p8.ctor === 'Ok') {
+			return _user$project$Main$convertEsg(_p8._0);
+		} else {
+			return _user$project$Main$emptyModel;
 		}
-	};
+	}();
 	return {
 		ctor: '_Tuple2',
 		_0: model,
 		_1: _user$project$Main$drawCytoscape(model)
 	};
 }();
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {nodes: a, edges: b};
-	});
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
 var _user$project$Main$Node = F2(
 	function (a, b) {
 		return {data: a, position: b};

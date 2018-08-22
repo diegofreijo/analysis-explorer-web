@@ -5,20 +5,16 @@
 port module Main exposing (..)
 
 import Html exposing (div, button, text)
-import EsgDecoder exposing (decode)
+import EsgDecoder exposing (decode, JsonESG, JsonEG, JsonNode)
 
 
 -- import Html.Events exposing (onClick)
 -- import Draw exposing (drawGraph)
--- main : Program Never Model Msg
--- main =
---     Html.program { init = init, view = view, update = update, subscriptions = subscriptions }
 
 
+main : Program Never Model Msg
 main =
-    decode 
-    |> toString
-    |> text
+    Html.program { init = init, view = view, update = update, subscriptions = subscriptions }
 
 
 
@@ -84,25 +80,54 @@ init : ( Model, Cmd Msg )
 init =
     let
         model =
-            { nodes =
-                [ node "A" "M1" 0 0
-                , node "B" "M1" 0 0
-                , node "M1" "" 0 0
-                , node "X" "M2" 0 0
-                , node "Y" "M2" 0 0
-                , node "M2" "" 0 0
-                ]
-            , edges =
-                [ edge "AB" "A" "B"
-                , edge "XY" "X" "Y"
-                , edge "AX" "A" "X"
-                , edge "YB" "Y" "B"
-                , edge "M1M2" "M1" "M2"
-                , edge "M2X" "M2" "X"
-                ]
-            }
+            case decode of
+                Ok jsonEsg ->
+                    convertEsg jsonEsg
+
+                Err error ->
+                    emptyModel
+
+        -- { nodes =
+        --     [ node "A" "M1" 0 0
+        --     , node "B" "M1" 0 0
+        --     , node "M1" "" 0 0
+        --     , node "X" "M2" 0 0
+        --     , node "Y" "M2" 0 0
+        --     , node "M2" "" 0 0
+        --     ]
+        -- , edges =
+        --     [ edge "AB" "A" "B"
+        --     , edge "XY" "X" "Y"
+        --     , edge "AX" "A" "X"
+        --     , edge "YB" "Y" "B"
+        --     , edge "M1M2" "M1" "M2"
+        --     , edge "M2X" "M2" "X"
+        --     ]
+        -- }
     in
         ( model, drawCytoscape model )
+
+
+convertEsg : JsonESG -> Model
+convertEsg { methods } =
+    case List.head methods of
+        Just m ->
+            case (convertEg m) of
+                (nodes, edges) ->
+                    Model nodes edges
+        Nothing ->
+            emptyModel
+
+
+convertEg : JsonEG -> (List Node, List Edge)
+convertEg { nodes } = 
+    ( List.map convertNode nodes, [])
+
+convertNode : JsonNode -> Node
+convertNode { id, kind } =
+    { data = { id = toString id, parent = "" }
+    , position = { x = 0, y = 0 }
+    }
 
 
 node : NodeId -> NodeId -> Int -> Int -> Node
@@ -121,6 +146,9 @@ edge id source target =
         }
     }
 
+emptyModel : Model
+emptyModel = 
+    { nodes = [], edges = [] }
 
 
 -- UPDATE
