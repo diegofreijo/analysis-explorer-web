@@ -7846,10 +7846,8 @@ var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{ctor: '[]'});
+	return _elm_lang$html$Html$text(
+		_elm_lang$core$Basics$toString(model));
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
@@ -7869,8 +7867,8 @@ var _user$project$Main$convertEdge = function (_p0) {
 	};
 };
 var _user$project$Main$methodClass = 'method';
-var _user$project$Main$createMethodNode = F2(
-	function (name, id) {
+var _user$project$Main$createMethodNode = F3(
+	function (name, id, x) {
 		return {
 			data: {
 				id: id,
@@ -7878,12 +7876,12 @@ var _user$project$Main$createMethodNode = F2(
 				parent: _elm_lang$core$Maybe$Nothing
 			},
 			classes: _user$project$Main$methodClass,
-			position: {x: 0, y: 0}
+			position: {x: x, y: 0}
 		};
 	});
 var _user$project$Main$instructionClass = 'instruction';
-var _user$project$Main$convertInstructionNode = F2(
-	function (parent, _p2) {
+var _user$project$Main$convertInstructionNode = F3(
+	function (parent, x, _p2) {
 		var _p3 = _p2;
 		var _p4 = _p3.id;
 		return {
@@ -7896,25 +7894,27 @@ var _user$project$Main$convertInstructionNode = F2(
 				parent: _elm_lang$core$Maybe$Just(parent)
 			},
 			classes: _user$project$Main$instructionClass,
-			position: {x: 0, y: 0}
+			position: {x: x, y: 0}
 		};
 	});
-var _user$project$Main$convertEg = function (_p5) {
-	var _p6 = _p5;
-	var _p7 = _p6.name;
-	var methodNode = A2(_user$project$Main$createMethodNode, _p7, _p7);
-	return {
-		nodes: {
-			ctor: '::',
-			_0: methodNode,
-			_1: A2(
-				_elm_lang$core$List$map,
-				_user$project$Main$convertInstructionNode(_p7),
-				_p6.nodes)
-		},
-		edges: A2(_elm_lang$core$List$map, _user$project$Main$convertEdge, _p6.edges)
-	};
-};
+var _user$project$Main$convertEg = F2(
+	function (column, _p5) {
+		var _p6 = _p5;
+		var _p7 = _p6.name;
+		var x = column * 150;
+		var methodNode = A3(_user$project$Main$createMethodNode, _p7, _p7, x);
+		return {
+			nodes: {
+				ctor: '::',
+				_0: methodNode,
+				_1: A2(
+					_elm_lang$core$List$map,
+					A2(_user$project$Main$convertInstructionNode, _p7, x),
+					_p6.nodes)
+			},
+			edges: A2(_elm_lang$core$List$map, _user$project$Main$convertEdge, _p6.edges)
+		};
+	});
 var _user$project$Main$emptyModel = {
 	nodes: {ctor: '[]'},
 	edges: {ctor: '[]'}
@@ -7959,7 +7959,7 @@ var _user$project$Main$convertEsg = function (_p8) {
 					A2(_elm_lang$core$List$append, m.edges, acc.edges));
 			}),
 		_user$project$Main$emptyModel,
-		A2(_elm_lang$core$List$map, _user$project$Main$convertEg, _p9.methods));
+		A2(_elm_lang$core$List$indexedMap, _user$project$Main$convertEg, _p9.methods));
 };
 var _user$project$Main$init = function () {
 	var model = function () {

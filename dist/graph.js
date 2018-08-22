@@ -157,9 +157,9 @@ function drawGraph(elements) {
     elements: elements,
 
     layout: {
-      name: 'dagre',
-      // name: 'preset',
-      // padding: 5
+      // name: 'dagre',
+      name: 'preset',
+      padding: 5
     }
   });
 }

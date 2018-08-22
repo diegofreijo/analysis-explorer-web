@@ -96,10 +96,12 @@ emptyModel =
     { nodes = [], edges = [] }
 
 
+instructionClass : String
 instructionClass =
     "instruction"
 
 
+methodClass : String
 methodClass =
     "method"
 
@@ -132,43 +134,46 @@ convertEsg { methods } =
                 (List.append m.edges acc.edges)
         )
         emptyModel
-        (List.map convertEg methods)
+        (List.indexedMap convertEg methods)
 
 
-convertEg : JsonEG -> Model
-convertEg { name, nodes, edges } =
+convertEg : Int -> JsonEG -> Model
+convertEg column { name, nodes, edges } =
     let
+        x =
+            column * 150
+
         methodNode =
-            createMethodNode name name
+            createMethodNode name name x
     in
         { nodes =
             methodNode
-                :: List.map (convertInstructionNode name) nodes
+                :: List.map (convertInstructionNode name x) nodes
         , edges = List.map convertEdge edges
         }
 
 
-createMethodNode : String -> NodeId -> Node
-createMethodNode name id =
+createMethodNode : String -> NodeId -> Int -> Node
+createMethodNode name id x =
     { data =
         { id = id
         , name = "Method:\n" ++ name
         , parent = Nothing
         }
     , classes = methodClass
-    , position = { x = 0, y = 0 }
+    , position = { x = x, y = 0 }
     }
 
 
-convertInstructionNode : NodeId -> JsonNode -> Node
-convertInstructionNode parent { id, kind } =
+convertInstructionNode : NodeId -> Int -> JsonNode -> Node
+convertInstructionNode parent x { id, kind } =
     { data =
         { id = toString id
         , name = "Instruction:\n" ++ toString id
         , parent = Just parent
         }
     , classes = instructionClass
-    , position = { x = 0, y = 0 }
+    , position = { x = x, y = 0 }
     }
 
 
@@ -209,11 +214,7 @@ update msg model =
 
 view : Model -> Html.Html Msg
 view model =
-    div []
-        [--   button [ onClick Decrement ] [ text "-" ]
-         -- , div [] [ text (toString model) ]
-         -- , button [ onClick Increment ] [ text "+" ]
-        ]
+    text (toString model)
 
 
 
