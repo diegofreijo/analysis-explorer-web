@@ -141,14 +141,14 @@ convertEg : Int -> JsonEG -> Model
 convertEg column { name, nodes, edges } =
     let
         x =
-            column * 150
+            column * 250
 
         methodNode =
             createMethodNode name name x
     in
         { nodes =
             methodNode
-                :: List.map (convertInstructionNode name x) nodes
+                :: List.indexedMap (convertInstructionNode name x) nodes
         , edges = List.map convertEdge edges
         }
 
@@ -165,15 +165,15 @@ createMethodNode name id x =
     }
 
 
-convertInstructionNode : NodeId -> Int -> JsonNode -> Node
-convertInstructionNode parent x { id, kind } =
+convertInstructionNode : NodeId -> Int -> Int -> JsonNode -> Node
+convertInstructionNode parent x row { id, kind } =
     { data =
         { id = toString id
         , name = "Instruction:\n" ++ toString id
         , parent = Just parent
         }
     , classes = instructionClass
-    , position = { x = x, y = 0 }
+    , position = { x = x, y = row * 100 }
     }
 
 
@@ -214,8 +214,12 @@ update msg model =
 
 view : Model -> Html.Html Msg
 view model =
-    text (toString model)
-
+    model.nodes
+    |> List.length
+    |> toString 
+    |> (++) "#Nodes: "
+    |> text
+      
 
 
 -- PORTS

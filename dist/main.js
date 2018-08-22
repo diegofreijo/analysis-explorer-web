@@ -7847,7 +7847,14 @@ var _user$project$Main$subscriptions = function (model) {
 };
 var _user$project$Main$view = function (model) {
 	return _elm_lang$html$Html$text(
-		_elm_lang$core$Basics$toString(model));
+		A2(
+			F2(
+				function (x, y) {
+					return A2(_elm_lang$core$Basics_ops['++'], x, y);
+				}),
+			'#Nodes: ',
+			_elm_lang$core$Basics$toString(
+				_elm_lang$core$List$length(model.nodes))));
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
@@ -7880,8 +7887,8 @@ var _user$project$Main$createMethodNode = F3(
 		};
 	});
 var _user$project$Main$instructionClass = 'instruction';
-var _user$project$Main$convertInstructionNode = F3(
-	function (parent, x, _p2) {
+var _user$project$Main$convertInstructionNode = F4(
+	function (parent, x, row, _p2) {
 		var _p3 = _p2;
 		var _p4 = _p3.id;
 		return {
@@ -7894,21 +7901,21 @@ var _user$project$Main$convertInstructionNode = F3(
 				parent: _elm_lang$core$Maybe$Just(parent)
 			},
 			classes: _user$project$Main$instructionClass,
-			position: {x: x, y: 0}
+			position: {x: x, y: row * 100}
 		};
 	});
 var _user$project$Main$convertEg = F2(
 	function (column, _p5) {
 		var _p6 = _p5;
 		var _p7 = _p6.name;
-		var x = column * 150;
+		var x = column * 250;
 		var methodNode = A3(_user$project$Main$createMethodNode, _p7, _p7, x);
 		return {
 			nodes: {
 				ctor: '::',
 				_0: methodNode,
 				_1: A2(
-					_elm_lang$core$List$map,
+					_elm_lang$core$List$indexedMap,
 					A2(_user$project$Main$convertInstructionNode, _p7, x),
 					_p6.nodes)
 			},
