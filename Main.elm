@@ -5,12 +5,20 @@
 port module Main exposing (..)
 
 import Html exposing (div, button, text)
-import Html.Events exposing (onClick)
+import EsgDecoder exposing (decode)
 
 
-main : Program Never Model Msg
+-- import Html.Events exposing (onClick)
+-- import Draw exposing (drawGraph)
+-- main : Program Never Model Msg
+-- main =
+--     Html.program { init = init, view = view, update = update, subscriptions = subscriptions }
+
+
 main =
-    Html.program { init = init, view = view, update = update, subscriptions = subscriptions }
+    decode 
+    |> toString
+    |> text
 
 
 
@@ -33,8 +41,7 @@ main =
 
 type alias Model =
     { nodes : List Node
-
-    -- edges: List Edge
+    , edges : List Edge
     }
 
 
@@ -49,11 +56,27 @@ type alias NodeData =
     , parent : NodeId
     }
 
-type alias NodeId = String
+
+type alias NodeId =
+    String
+
 
 type alias NodePosition =
     { x : Int
     , y : Int
+    }
+
+
+type alias EdgeId =
+    String
+
+
+type alias Edge =
+    { data :
+        { id : EdgeId
+        , source : NodeId
+        , target : NodeId
+        }
     }
 
 
@@ -62,22 +85,43 @@ init =
     let
         model =
             { nodes =
-                [ 
-                    node "A" "C" 0 0,
-                    node "B" "C" 50 0,
-                    node "C" "" 0 0
+                [ node "A" "M1" 0 0
+                , node "B" "M1" 0 0
+                , node "M1" "" 0 0
+                , node "X" "M2" 0 0
+                , node "Y" "M2" 0 0
+                , node "M2" "" 0 0
+                ]
+            , edges =
+                [ edge "AB" "A" "B"
+                , edge "XY" "X" "Y"
+                , edge "AX" "A" "X"
+                , edge "YB" "Y" "B"
+                , edge "M1M2" "M1" "M2"
+                , edge "M2X" "M2" "X"
                 ]
             }
     in
-        ( model, drawGraph model )
+        ( model, drawCytoscape model )
 
 
 node : NodeId -> NodeId -> Int -> Int -> Node
 node id parent x y =
-    {
-        data = { id = id, parent = parent }, 
-        position = { x = x, y = y }
+    { data = { id = id, parent = "" }
+    , position = { x = x, y = y }
     }
+
+
+edge : EdgeId -> NodeId -> NodeId -> Edge
+edge id source target =
+    { data =
+        { id = id
+        , source = source
+        , target = target
+        }
+    }
+
+
 
 -- UPDATE
 
@@ -93,26 +137,15 @@ update msg model =
 
 
 
--- case msg of
---     Increment ->
---         updateCounter (count + 1) "increment"
---     Decrement ->
---         updateCounter (count - 1) "decrement"
--- updateCounter : Int -> String -> ( Model, Cmd msg )
--- updateCounter count last =
---     let
---         model = { count = count, last = last }
---     in
---         ( model, output model )
 -- VIEW
 
 
 view : Model -> Html.Html Msg
 view model =
     div []
-        [ button [ onClick Decrement ] [ text "-" ]
-        , div [] [ text (toString model) ]
-        , button [ onClick Increment ] [ text "+" ]
+        [--   button [ onClick Decrement ] [ text "-" ]
+         -- , div [] [ text (toString model) ]
+         -- , button [ onClick Increment ] [ text "+" ]
         ]
 
 
@@ -120,12 +153,9 @@ view model =
 -- PORTS
 
 
-port drawGraph : Model -> Cmd msg
-
-
-port input : (Model -> msg) -> Sub msg
+port drawCytoscape : Model -> Cmd msg
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    input (\x -> Increment)
+    Sub.none

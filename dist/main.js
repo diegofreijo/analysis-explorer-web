@@ -7795,134 +7795,69 @@ var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
 
-var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
-var _elm_lang$html$Html_Events$targetChecked = A2(
-	_elm_lang$core$Json_Decode$at,
-	{
-		ctor: '::',
-		_0: 'target',
-		_1: {
-			ctor: '::',
-			_0: 'checked',
-			_1: {ctor: '[]'}
-		}
-	},
-	_elm_lang$core$Json_Decode$bool);
-var _elm_lang$html$Html_Events$targetValue = A2(
-	_elm_lang$core$Json_Decode$at,
-	{
-		ctor: '::',
-		_0: 'target',
-		_1: {
-			ctor: '::',
-			_0: 'value',
-			_1: {ctor: '[]'}
-		}
-	},
-	_elm_lang$core$Json_Decode$string);
-var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
-var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
-var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
-var _elm_lang$html$Html_Events$onFocus = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'focus',
-		_elm_lang$core$Json_Decode$succeed(msg));
+var _user$project$EsgDecoder$jsonStringTest = '\n    {\n    \"Methods\": [\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 0,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 1,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 2,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 3,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 4,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 5,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 6,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 7,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 8,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 9,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 43,\n                    \"Kind\": 3\n                },\n                {\n                    \"Id\": 44,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 0,\n                    \"Destination\": 2\n                },\n                {\n                    \"Origin\": 2,\n                    \"Destination\": 3\n                },\n                {\n                    \"Origin\": 3,\n                    \"Destination\": 4\n                },\n                {\n                    \"Origin\": 4,\n                    \"Destination\": 43\n                },\n                {\n                    \"Origin\": 4,\n                    \"Destination\": 10\n                },\n                {\n                    \"Origin\": 5,\n                    \"Destination\": 6\n                },\n                {\n                    \"Origin\": 6,\n                    \"Destination\": 7\n                },\n                {\n                    \"Origin\": 7,\n                    \"Destination\": 8\n                },\n                {\n                    \"Origin\": 8,\n                    \"Destination\": 44\n                },\n                {\n                    \"Origin\": 8,\n                    \"Destination\": 16\n                },\n                {\n                    \"Origin\": 9,\n                    \"Destination\": 1\n                },\n                {\n                    \"Origin\": 43,\n                    \"Destination\": 5\n                },\n                {\n                    \"Origin\": 44,\n                    \"Destination\": 9\n                }\n            ]\n        },\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 10,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 11,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 12,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 13,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 14,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 15,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 45,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 10,\n                    \"Destination\": 12\n                },\n                {\n                    \"Origin\": 11,\n                    \"Destination\": 43\n                },\n                {\n                    \"Origin\": 11,\n                    \"Destination\": 45\n                },\n                {\n                    \"Origin\": 12,\n                    \"Destination\": 13\n                },\n                {\n                    \"Origin\": 13,\n                    \"Destination\": 45\n                },\n                {\n                    \"Origin\": 13,\n                    \"Destination\": 10\n                },\n                {\n                    \"Origin\": 14,\n                    \"Destination\": 15\n                },\n                {\n                    \"Origin\": 15,\n                    \"Destination\": 11\n                },\n                {\n                    \"Origin\": 45,\n                    \"Destination\": 14\n                }\n            ]\n        },\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 16,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 17,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 18,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 19,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 20,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 21,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 22,\n                    \"Kind\": 2\n                },\n                {\n                    \"Id\": 23,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 24,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 25,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 26,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 27,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 28,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 29,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 30,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 46,\n                    \"Kind\": 3\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 16,\n                    \"Destination\": 18\n                },\n                {\n                    \"Origin\": 17,\n                    \"Destination\": 44\n                },\n                {\n                    \"Origin\": 18,\n                    \"Destination\": 19\n                },\n                {\n                    \"Origin\": 19,\n                    \"Destination\": 20\n                },\n                {\n                    \"Origin\": 20,\n                    \"Destination\": 21\n                },\n                {\n                    \"Origin\": 21,\n                    \"Destination\": 22\n                },\n                {\n                    \"Origin\": 22,\n                    \"Destination\": 46\n                },\n                {\n                    \"Origin\": 22,\n                    \"Destination\": 31\n                },\n                {\n                    \"Origin\": 23,\n                    \"Destination\": 24\n                },\n                {\n                    \"Origin\": 24,\n                    \"Destination\": 25\n                },\n                {\n                    \"Origin\": 25,\n                    \"Destination\": 26\n                },\n                {\n                    \"Origin\": 26,\n                    \"Destination\": 27\n                },\n                {\n                    \"Origin\": 27,\n                    \"Destination\": 28\n                },\n                {\n                    \"Origin\": 28,\n                    \"Destination\": 29\n                },\n                {\n                    \"Origin\": 29,\n                    \"Destination\": 30\n                },\n                {\n                    \"Origin\": 30,\n                    \"Destination\": 17\n                },\n                {\n                    \"Origin\": 46,\n                    \"Destination\": 23\n                }\n            ]\n        },\n        {\n            \"Nodes\": [\n                {\n                    \"Id\": 31,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 32,\n                    \"Kind\": 0\n                },\n                {\n                    \"Id\": 33,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 34,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 35,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 36,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 37,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 38,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 39,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 40,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 41,\n                    \"Kind\": 1\n                },\n                {\n                    \"Id\": 42,\n                    \"Kind\": 1\n                }\n            ],\n            \"Edges\": [\n                {\n                    \"Origin\": 31,\n                    \"Destination\": 33\n                },\n                {\n                    \"Origin\": 32,\n                    \"Destination\": 46\n                },\n                {\n                    \"Origin\": 33,\n                    \"Destination\": 34\n                },\n                {\n                    \"Origin\": 34,\n                    \"Destination\": 35\n                },\n                {\n                    \"Origin\": 35,\n                    \"Destination\": 36\n                },\n                {\n                    \"Origin\": 36,\n                    \"Destination\": 37\n                },\n                {\n                    \"Origin\": 37,\n                    \"Destination\": 38\n                },\n                {\n                    \"Origin\": 38,\n                    \"Destination\": 39\n                },\n                {\n                    \"Origin\": 39,\n                    \"Destination\": 40\n                },\n                {\n                    \"Origin\": 40,\n                    \"Destination\": 41\n                },\n                {\n                    \"Origin\": 41,\n                    \"Destination\": 42\n                },\n                {\n                    \"Origin\": 42,\n                    \"Destination\": 32\n                }\n            ]\n        }\n    ]\n}\n\n';
+var _user$project$EsgDecoder$JsonESG = function (a) {
+	return {methods: a};
 };
-var _elm_lang$html$Html_Events$onBlur = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'blur',
-		_elm_lang$core$Json_Decode$succeed(msg));
+var _user$project$EsgDecoder$JsonEG = function (a) {
+	return {nodes: a};
 };
-var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
-	_elm_lang$html$Html_Events$defaultOptions,
-	{preventDefault: true});
-var _elm_lang$html$Html_Events$onSubmit = function (msg) {
-	return A3(
-		_elm_lang$html$Html_Events$onWithOptions,
-		'submit',
-		_elm_lang$html$Html_Events$onSubmitOptions,
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onCheck = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'change',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
-};
-var _elm_lang$html$Html_Events$onInput = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'input',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
-};
-var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseout',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseover',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseleave',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseenter',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseup',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mousedown',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'dblclick',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onClick = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'click',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$Options = F2(
+var _user$project$EsgDecoder$JsonNode = F2(
 	function (a, b) {
-		return {stopPropagation: a, preventDefault: b};
+		return {id: a, kind: b};
 	});
+var _user$project$EsgDecoder$nodeDecoder = A3(
+	_elm_lang$core$Json_Decode$map2,
+	_user$project$EsgDecoder$JsonNode,
+	A2(_elm_lang$core$Json_Decode$field, 'Id', _elm_lang$core$Json_Decode$int),
+	A2(_elm_lang$core$Json_Decode$field, 'Kind', _elm_lang$core$Json_Decode$int));
+var _user$project$EsgDecoder$egDecoder = A2(
+	_elm_lang$core$Json_Decode$map,
+	_user$project$EsgDecoder$JsonEG,
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'Nodes',
+		_elm_lang$core$Json_Decode$list(_user$project$EsgDecoder$nodeDecoder)));
+var _user$project$EsgDecoder$esgDecoder = A2(
+	_elm_lang$core$Json_Decode$map,
+	_user$project$EsgDecoder$JsonESG,
+	A2(
+		_elm_lang$core$Json_Decode$field,
+		'Methods',
+		_elm_lang$core$Json_Decode$list(_user$project$EsgDecoder$egDecoder)));
+var _user$project$EsgDecoder$decode = A2(_elm_lang$core$Json_Decode$decodeString, _user$project$EsgDecoder$esgDecoder, _user$project$EsgDecoder$jsonStringTest);
 
+var _user$project$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{ctor: '[]'});
+};
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 	});
+var _user$project$Main$edge = F3(
+	function (id, source, target) {
+		return {
+			data: {id: id, source: source, target: target}
+		};
+	});
 var _user$project$Main$node = F4(
 	function (id, parent, x, y) {
 		return {
-			data: {id: id, parent: parent},
+			data: {id: id, parent: ''},
 			position: {x: x, y: y}
 		};
 	});
-var _user$project$Main$drawGraph = _elm_lang$core$Native_Platform.outgoingPort(
-	'drawGraph',
+var _user$project$Main$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	_elm_lang$html$Html$text(
+		_elm_lang$core$Basics$toString(_user$project$EsgDecoder$decode)));
+var _user$project$Main$drawCytoscape = _elm_lang$core$Native_Platform.outgoingPort(
+	'drawCytoscape',
 	function (v) {
 		return {
 			nodes: _elm_lang$core$Native_List.toArray(v.nodes).map(
@@ -7931,6 +7866,12 @@ var _user$project$Main$drawGraph = _elm_lang$core$Native_Platform.outgoingPort(
 						data: {id: v.data.id, parent: v.data.parent},
 						position: {x: v.position.x, y: v.position.y}
 					};
+				}),
+			edges: _elm_lang$core$Native_List.toArray(v.edges).map(
+				function (v) {
+					return {
+						data: {id: v.data.id, source: v.data.source, target: v.data.target}
+					};
 				})
 		};
 	});
@@ -7938,14 +7879,51 @@ var _user$project$Main$init = function () {
 	var model = {
 		nodes: {
 			ctor: '::',
-			_0: A4(_user$project$Main$node, 'A', 'C', 0, 0),
+			_0: A4(_user$project$Main$node, 'A', 'M1', 0, 0),
 			_1: {
 				ctor: '::',
-				_0: A4(_user$project$Main$node, 'B', 'C', 50, 0),
+				_0: A4(_user$project$Main$node, 'B', 'M1', 0, 0),
 				_1: {
 					ctor: '::',
-					_0: A4(_user$project$Main$node, 'C', '', 0, 0),
-					_1: {ctor: '[]'}
+					_0: A4(_user$project$Main$node, 'M1', '', 0, 0),
+					_1: {
+						ctor: '::',
+						_0: A4(_user$project$Main$node, 'X', 'M2', 0, 0),
+						_1: {
+							ctor: '::',
+							_0: A4(_user$project$Main$node, 'Y', 'M2', 0, 0),
+							_1: {
+								ctor: '::',
+								_0: A4(_user$project$Main$node, 'M2', '', 0, 0),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		},
+		edges: {
+			ctor: '::',
+			_0: A3(_user$project$Main$edge, 'AB', 'A', 'B'),
+			_1: {
+				ctor: '::',
+				_0: A3(_user$project$Main$edge, 'XY', 'X', 'Y'),
+				_1: {
+					ctor: '::',
+					_0: A3(_user$project$Main$edge, 'AX', 'A', 'X'),
+					_1: {
+						ctor: '::',
+						_0: A3(_user$project$Main$edge, 'YB', 'Y', 'B'),
+						_1: {
+							ctor: '::',
+							_0: A3(_user$project$Main$edge, 'M1M2', 'M1', 'M2'),
+							_1: {
+								ctor: '::',
+								_0: A3(_user$project$Main$edge, 'M2X', 'M2', 'X'),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -7953,64 +7931,13 @@ var _user$project$Main$init = function () {
 	return {
 		ctor: '_Tuple2',
 		_0: model,
-		_1: _user$project$Main$drawGraph(model)
+		_1: _user$project$Main$drawCytoscape(model)
 	};
 }();
-var _user$project$Main$input = _elm_lang$core$Native_Platform.incomingPort(
-	'input',
-	A2(
-		_elm_lang$core$Json_Decode$andThen,
-		function (nodes) {
-			return _elm_lang$core$Json_Decode$succeed(
-				{nodes: nodes});
-		},
-		A2(
-			_elm_lang$core$Json_Decode$field,
-			'nodes',
-			_elm_lang$core$Json_Decode$list(
-				A2(
-					_elm_lang$core$Json_Decode$andThen,
-					function (data) {
-						return A2(
-							_elm_lang$core$Json_Decode$andThen,
-							function (position) {
-								return _elm_lang$core$Json_Decode$succeed(
-									{data: data, position: position});
-							},
-							A2(
-								_elm_lang$core$Json_Decode$field,
-								'position',
-								A2(
-									_elm_lang$core$Json_Decode$andThen,
-									function (x) {
-										return A2(
-											_elm_lang$core$Json_Decode$andThen,
-											function (y) {
-												return _elm_lang$core$Json_Decode$succeed(
-													{x: x, y: y});
-											},
-											A2(_elm_lang$core$Json_Decode$field, 'y', _elm_lang$core$Json_Decode$int));
-									},
-									A2(_elm_lang$core$Json_Decode$field, 'x', _elm_lang$core$Json_Decode$int))));
-					},
-					A2(
-						_elm_lang$core$Json_Decode$field,
-						'data',
-						A2(
-							_elm_lang$core$Json_Decode$andThen,
-							function (id) {
-								return A2(
-									_elm_lang$core$Json_Decode$andThen,
-									function (parent) {
-										return _elm_lang$core$Json_Decode$succeed(
-											{id: id, parent: parent});
-									},
-									A2(_elm_lang$core$Json_Decode$field, 'parent', _elm_lang$core$Json_Decode$string));
-							},
-							A2(_elm_lang$core$Json_Decode$field, 'id', _elm_lang$core$Json_Decode$string))))))));
-var _user$project$Main$Model = function (a) {
-	return {nodes: a};
-};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {nodes: a, edges: b};
+	});
 var _user$project$Main$Node = F2(
 	function (a, b) {
 		return {data: a, position: b};
@@ -8023,64 +7950,11 @@ var _user$project$Main$NodePosition = F2(
 	function (a, b) {
 		return {x: a, y: b};
 	});
+var _user$project$Main$Edge = function (a) {
+	return {data: a};
+};
 var _user$project$Main$Decrement = {ctor: 'Decrement'};
 var _user$project$Main$Increment = {ctor: 'Increment'};
-var _user$project$Main$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$button,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Decrement),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('-'),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{ctor: '[]'},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(
-							_elm_lang$core$Basics$toString(model)),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$button,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Increment),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text('+'),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
-var _user$project$Main$subscriptions = function (model) {
-	return _user$project$Main$input(
-		function (x) {
-			return _user$project$Main$Increment;
-		});
-};
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
