@@ -16,16 +16,25 @@ function drawGraph(elements) {
         'width': 80,
         'height': 80
       })
-    .selector('edge')
+    .selector('interproceduralEdge')
       .css({
         'content': 'data(name)',
-        'width': 8,
+        'width': 18,
         'line-color': '#888',
         'target-arrow-color': '#888',
         'source-arrow-color': '#888',
         'target-arrow-shape': 'triangle'
       })
-    .selector(':selected')
+    .selector('.intraproceduralEdge')
+      .css({
+        'content': 'data(name)',
+        'width': 8,
+        'line-color': '#800',
+        'target-arrow-color': '#800',
+        'source-arrow-color': '#800',
+        'target-arrow-shape': 'triangle'
+      })
+    // .selector(':selected')
 //       .css({
 //         'background-color': 'black',
 //         'line-color': 'black',
@@ -37,8 +46,8 @@ function drawGraph(elements) {
       .css({
         'shape': 'roundrectangle',
         'text-valign': 'top',
-        'height': 'auto',
-        'width': 'auto',
+        // 'height': 'auto',
+        // 'width': 'auto',
         'background-color': '#ccc',
         'background-opacity': 0.333,
         'color': '#888',

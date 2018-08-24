@@ -24,20 +24,6 @@ main =
 
 
 -- MODEL
--- elements: {
---     nodes: [
---         { data: { id: 'a', parent: 'b' }, position: { x: 215, y: 85 } },
---         { data: { id: 'b' } },
---         { data: { id: 'c', parent: 'b' }, position: { x: 300, y: 85 } },
---         { data: { id: 'd' }, position: { x: 215, y: 175 } },
---         { data: { id: 'e' } },
---         { data: { id: 'f', parent: 'e' }, position: { x: 300, y: 175 } }
---     ],
---     edges: [
---         { data: { id: 'ad', source: 'a', target: 'd' } },
---         { data: { id: 'eb', source: 'e', target: 'b' } }
---     ]
--- }
 
 
 type alias Model =
@@ -48,7 +34,7 @@ type alias Model =
 
 type alias Node =
     { data : NodeData
-    , classes : NodeClass
+    , classes : Class
     , position : NodePosition
     }
 
@@ -60,7 +46,7 @@ type alias NodeData =
     }
 
 
-type alias NodeClass =
+type alias Class =
     String
 
 
@@ -84,6 +70,7 @@ type alias Edge =
         , source : NodeId
         , target : NodeId
         }
+    , classes : Class
     }
 
 
@@ -104,6 +91,15 @@ instructionClass =
 methodClass : String
 methodClass =
     "method"
+
+
+interproceduralEdgeClass : String
+interproceduralEdgeClass =
+    "interproceduralEdge"
+
+intraproceduralEdgeClass : String
+intraproceduralEdgeClass =
+    "intraproceduralEdge"
 
 
 
@@ -145,11 +141,13 @@ convertEg column { name, nodes, edges } =
 
         methodNode =
             createMethodNode name name x
-    in
-        { nodes =
+
+        newNodes =
             methodNode
                 :: List.indexedMap (convertInstructionNode name x) nodes
-        , edges = List.map convertEdge edges
+    in
+        { nodes = newNodes
+        , edges = List.map (convertEdge newNodes) edges
         }
 
 
@@ -177,8 +175,8 @@ convertInstructionNode parent x row { id, kind } =
     }
 
 
-convertEdge : JsonEdge -> Edge
-convertEdge { origin, destination } =
+convertEdge : List Node -> JsonEdge -> Edge
+convertEdge nodes { origin, destination, kind } =
     let
         source =
             (toString origin)
@@ -191,10 +189,16 @@ convertEdge { origin, destination } =
             , source = source
             , target = target
             }
+        , classes = 
+            case kind of
+                0 -> interproceduralEdgeClass
+                _ -> intraproceduralEdgeClass
         }
 
 
 
+-- HELPERS
+-- wnodesWithParents : List Node ->  -> ()
 -- UPDATE
 
 
@@ -215,11 +219,11 @@ update msg model =
 view : Model -> Html.Html Msg
 view model =
     model.nodes
-    |> List.length
-    |> toString 
-    |> (++) "#Nodes: "
-    |> text
-      
+        |> List.length
+        |> toString
+        |> (++) "#Nodes: "
+        |> text
+
 
 
 -- PORTS
