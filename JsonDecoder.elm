@@ -1,4 +1,4 @@
-module EsgDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
+module JsonDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
 
 import Json.Decode exposing (Decoder, decodeString, field, int, list, map, map2, map3, string)
 
@@ -22,7 +22,6 @@ type alias JsonNode =
     , kind : Int
     , description : String
     }
-
 
 type alias JsonEdge =
     { origin : Int

@@ -16,13 +16,13 @@ function drawGraph(elements) {
         'width': 80,
         'height': 80
       })
-    .selector('interproceduralEdge')
+    .selector('.interproceduralEdge')
       .css({
         'content': 'data(name)',
-        'width': 18,
-        'line-color': '#888',
-        'target-arrow-color': '#888',
-        'source-arrow-color': '#888',
+        'width': 8,
+        'line-color': '#080',
+        'target-arrow-color': '#080',
+        'source-arrow-color': '#080',
         'target-arrow-shape': 'triangle'
       })
     .selector('.intraproceduralEdge')
@@ -55,6 +55,26 @@ function drawGraph(elements) {
         0,
         'font-size': 25
       })
+    .selector('.entryNode')
+      .css({
+        'shape': 'roundrectangle',
+        'text-valign': 'top',
+        'background-color': '#ff0',
+        'background-opacity': 0.333,
+        'color': '#888',
+        'text-outline-width': 0,
+        'font-size': 25
+      })
+    .selector('.exitNode')
+      .css({
+        'shape': 'roundrectangle',
+        'text-valign': 'top',
+        'background-color': '#0ff',
+        'background-opacity': 0.333,
+        'color': '#888',
+        'text-outline-width': 0,
+        'font-size': 25
+      })
     // .selector('#core, #app')
     //   .css({
     //     'width': 120,
@@ -68,7 +88,7 @@ function drawGraph(elements) {
     //     'padding-bottom': 20,
     //     'padding-right': 20
     //   })
-    .selector('#method, .method')
+    .selector('.method')
       .css({
         'background-color': '#93CDDD',
         'text-outline-color': '#93CDDD',
