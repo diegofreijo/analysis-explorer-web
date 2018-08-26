@@ -5,10 +5,6 @@ import JsonDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
 import Draw exposing (..)
 
 
--- import Html.Events exposing (onClick)
--- import Draw exposing (drawGraph)
-
-
 main : Program Never Model Msg
 main =
     Html.program
@@ -24,7 +20,33 @@ main =
 
 
 type alias Model =
-    {}
+    { esg : ESG
+    }
+
+
+type alias ESG =
+    List EG
+
+
+type alias EG =
+    { entry : Node
+    }
+
+
+type alias Node =
+    { id : NodeId
+    , description : String
+    , succesors : List Node
+    , kind : NodeKind
+    }
+
+
+type NodeKind
+    = EntryNode
+    | ExitNode
+    | InstructionNode
+    | CallNode
+    | ReturnCallNode
 
 
 
@@ -34,31 +56,52 @@ type alias Model =
 init : ( Model, Cmd Msg )
 init =
     let
-        graph =
+        esg =
             case decode of
                 Ok jsonEsg ->
-                    convertEsg jsonEsg
+                    convertFromJson jsonEsg
 
                 Err error ->
                     -- TODO: Improve this error handling
                     Draw.graph [] []
     in
-        ( {}, Draw.drawGraph graph )
+        ( { esg = esg }, drawEsg esg )
 
 
-convertEsg : JsonESG -> Draw.Graph
-convertEsg { methods } =
-    let
-        nodes =
-            (Draw.instructionNode "1" "I1" Nothing 0 0)
-                :: (Draw.instructionNode "2" "I2" Nothing 0 100)
-                :: []
+convertJsonESG : JsonESG -> ESG
+convertJsonESG { methods } =
+    { esg = List.map convertJsonEG methods }
 
-        edges =
-            []
-    in
-        Draw.graph nodes edges
 
+convertJsonEG : JsonEG -> EG
+convertJsonEG { name, nodes, edges } =
+    { entry = convertJsonNode (getEntryJsonNode nodes)
+    }
+
+getEntryJsonNode : List JsonNode -> Maybe JsonNode
+getEntryJsonNode nodes =
+    case nodes of
+        n :: ns ->
+            case n.kind of
+                0 -> Just n
+                _ -> getEntryJsonNode ns
+        [] ->
+            Nothing
+
+convertJsonNode : JsonEG -> JsonNode -> Node
+convertJsonNode { nodes, edges } { id, kind, description } =
+    { id = id
+    , description = desciption
+    , kind = 
+        case kind of
+            0 -> EntryNode
+            1 -> ExitNode
+            2 -> InstructionNode
+            3 -> CallNode
+            4 -> ReturnCallNode
+            _ -> ReturnCallNode         -- TODO: error handling
+    , succesors = 
+    }
 
 
 -- List.foldr
@@ -69,17 +112,13 @@ convertEsg { methods } =
 --     )
 --     emptyModel
 --     (List.indexedMap convertEg methods)
-
-
 -- convertEg : Int -> JsonEG -> Model
 -- convertEg column { name, nodes, edges } =
 --     let
 --         x =
 --             column * 250
-
 --         methodNode =
 --             createMethodNode name name x
-
 --         newNodes =
 --             methodNode
 --                 :: List.indexedMap (convertInstructionNode name x) nodes
@@ -87,8 +126,6 @@ convertEsg { methods } =
 --         { nodes = newNodes
 --         , edges = List.map (convertEdge newNodes) edges
 --         }
-
-
 -- createMethodNode : String -> NodeId -> Int -> Node
 -- createMethodNode name id x =
 --     { data =
@@ -99,9 +136,6 @@ convertEsg { methods } =
 --     , classes = methodClass
 --     , position = { x = x, y = 0 }
 --     }
-
-
-
 -- convertInstructionNode : NodeId -> Int -> Int -> JsonNode -> Node
 -- convertInstructionNode parent x row { id, kind } =
 --     { data =
@@ -119,14 +153,11 @@ convertEsg { methods } =
 --                 instructionClass
 --     , position = { x = x, y = row * 100 }
 --     }
-
-
 -- convertEdge : List Node -> JsonEdge -> Edge
 -- convertEdge nodes { origin, destination, kind } =
 --     let
 --         source =
 --             (toString origin)
-
 --         target =
 --             (toString destination)
 --     in
@@ -139,10 +170,32 @@ convertEsg { methods } =
 --             case kind of
 --                 0 ->
 --                     interproceduralEdgeClass
-
 --                 _ ->
 --                     intraproceduralEdgeClass
 --         }
+
+
+drawEsg : ESG -> Cmd msg
+drawEsg esg =
+    Draw.drawGraph (convertToGraph esg)
+
+
+
+-- TODO: this is just a test
+
+
+convertToGraph : ESG -> Draw.Graph
+convertToGraph esg =
+    let
+        nodes =
+            (Draw.instructionNode "1" "I1" Nothing 0 0)
+                :: (Draw.instructionNode "2" "I2" Nothing 0 100)
+                :: []
+
+        edges =
+            []
+    in
+        Draw.graph nodes edges
 
 
 
@@ -166,14 +219,14 @@ update msg model =
 view : Model -> Html.Html Msg
 view model =
     text ":)"
-    -- model.nodes
-    --     |> List.length
-    --     |> toString
-    --     |> (++) "#Nodes: "
-    --     |> text
 
 
 
+-- model.nodes
+--     |> List.length
+--     |> toString
+--     |> (++) "#Nodes: "
+--     |> text
 -- PORTS
 
 
