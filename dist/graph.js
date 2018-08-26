@@ -6,7 +6,7 @@ function drawGraph(elements) {
     boxSelectionEnabled: false,
 
     style: cytoscape.stylesheet()
-    .selector('node')
+      .selector('node')
       .css({
         'content': 'data(name)',
         'text-valign': 'center',
@@ -16,33 +16,31 @@ function drawGraph(elements) {
         'width': 80,
         'height': 80
       })
-    .selector('interproceduralEdge')
+      .selector('.interproceduralEdge')
       .css({
-        'content': 'data(name)',
-        'width': 18,
-        'line-color': '#888',
-        'target-arrow-color': '#888',
-        'source-arrow-color': '#888',
-        'target-arrow-shape': 'triangle'
+        'curve-style': 'bezier',
+        'width': 4,
+        'target-arrow-shape': 'triangle',
+        'line-color': '#9dbaea',
+        'target-arrow-color': '#9dbaea'
       })
-    .selector('.intraproceduralEdge')
+      .selector('.intraproceduralEdge')
       .css({
-        'content': 'data(name)',
-        'width': 8,
-        'line-color': '#800',
-        'target-arrow-color': '#800',
-        'source-arrow-color': '#800',
-        'target-arrow-shape': 'triangle'
+        'curve-style': 'bezier',
+        'width': 4,
+        'target-arrow-shape': 'triangle',
+        'line-color': '#ff0000',
+        'target-arrow-color': '#ff0000'
       })
-    // .selector(':selected')
-//       .css({
-//         'background-color': 'black',
-//         'line-color': 'black',
-//         'target-arrow-color': 'black',
-//         'source-arrow-color': 'black',
-//         'text-outline-color': 'black'
-//       })
-    .selector('$node > node')
+      // .selector(':selected')
+      //       .css({
+      //         'background-color': 'black',
+      //         'line-color': 'black',
+      //         'target-arrow-color': 'black',
+      //         'source-arrow-color': 'black',
+      //         'text-outline-color': 'black'
+      //       })
+      .selector('$node > node')
       .css({
         'shape': 'roundrectangle',
         'text-valign': 'top',
@@ -52,23 +50,23 @@ function drawGraph(elements) {
         'background-opacity': 0.333,
         'color': '#888',
         'text-outline-width':
-        0,
+          0,
         'font-size': 25
       })
-    // .selector('#core, #app')
-    //   .css({
-    //     'width': 120,
-    //     'height': 120,
-    //     'font-size': 25
-    //   })
-    // .selector('#api')
-    //   .css({
-    //     'padding-top': 20,
-    //     'padding-left': 20,
-    //     'padding-bottom': 20,
-    //     'padding-right': 20
-    //   })
-    .selector('#method, .method')
+      // .selector('#core, #app')
+      //   .css({
+      //     'width': 120,
+      //     'height': 120,
+      //     'font-size': 25
+      //   })
+      // .selector('#api')
+      //   .css({
+      //     'padding-top': 20,
+      //     'padding-left': 20,
+      //     'padding-bottom': 20,
+      //     'padding-right': 20
+      //   })
+      .selector('#method, .method')
       .css({
         'background-color': '#93CDDD',
         'text-outline-color': '#93CDDD',
@@ -97,7 +95,7 @@ function drawGraph(elements) {
     //     'padding-bottom': 40,
     //     'padding-right': 40
     //   })
-      ,
+    ,
 
 
 
@@ -126,49 +124,49 @@ function drawGraph(elements) {
     //     }
     //   }
 
-      // {
-      //   css: {
-      //     'content': 'data(id)',
-      //     'text-valign': 'center',
-      //     'text-halign': 'center'
-      //   },
-      //   selector: 'node',
-      // },
-      // {
-      //   css: {
-      //     'padding-top': '10px',
-      //     'padding-left': '10px',
-      //     'padding-bottom': '10px',
-      //     'padding-right': '10px',
-      //     'text-valign': 'top',
-      //     'text-halign': 'center',
-      //     'background-color': '#bbb'
-      //   },
-      //   selector: '$node > node',
-      // },
-      // {
-      //   css: {
-      //     'target-arrow-shape': 'triangle'
-      //   },
-      //   selector: 'edge',
-      // },
-      // {
-      //   css: {
-      //     'background-color': 'black',
-      //     'line-color': 'black',
-      //     'target-arrow-color': 'black',
-      //     'source-arrow-color': 'black',
-      //   },
-      //   selector: ':selected',
-      // }
+    // {
+    //   css: {
+    //     'content': 'data(id)',
+    //     'text-valign': 'center',
+    //     'text-halign': 'center'
+    //   },
+    //   selector: 'node',
+    // },
+    // {
+    //   css: {
+    //     'padding-top': '10px',
+    //     'padding-left': '10px',
+    //     'padding-bottom': '10px',
+    //     'padding-right': '10px',
+    //     'text-valign': 'top',
+    //     'text-halign': 'center',
+    //     'background-color': '#bbb'
+    //   },
+    //   selector: '$node > node',
+    // },
+    // {
+    //   css: {
+    //     'target-arrow-shape': 'triangle'
+    //   },
+    //   selector: 'edge',
+    // },
+    // {
+    //   css: {
+    //     'background-color': 'black',
+    //     'line-color': 'black',
+    //     'target-arrow-color': 'black',
+    //     'source-arrow-color': 'black',
+    //   },
+    //   selector: ':selected',
+    // }
     // ],
 
     elements: elements,
 
     layout: {
-      // name: 'dagre',
-      name: 'preset',
-      padding: 5
+      name: 'dagre',
+      // name: 'preset',
+      // padding: 5
     }
   });
 }
