@@ -1,6 +1,6 @@
 module JsonDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
 
-import Json.Decode exposing (Decoder, decodeString, field, int, list, map, map2, map3, string)
+import Json.Decode exposing (Decoder, decodeString, field, int, list, map, map2, map3, string, Error)
 
 
 -- MODEL
@@ -34,7 +34,7 @@ type alias JsonEdge =
 -- DECODER
 
 
-decode : Result String JsonESG
+decode : Result Error JsonESG
 decode =
     decodeString esgDecoder jsonStringTest
 

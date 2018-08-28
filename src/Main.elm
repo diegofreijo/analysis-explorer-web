@@ -1,17 +1,15 @@
 module Main exposing (..)
 
+import Browser
 import Html exposing (div, button, text)
 import JsonDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
 import Draw exposing (..)
 
 
--- import Html.Events exposing (onClick)
--- import Draw exposing (drawGraph)
 
-
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
+    Browser.element
         { init = init
         , view = view
         , update = update
@@ -31,8 +29,8 @@ type alias Model =
 -- INIT
 
 
-init : ( Model, Cmd Msg )
-init =
+init : () -> ( Model, Cmd Msg )
+init _ =
     let
         graph =
             case decode of
@@ -165,7 +163,7 @@ update msg model =
 
 view : Model -> Html.Html Msg
 view model =
-    text ":)"
+    text ":D"
     -- model.nodes
     --     |> List.length
     --     |> toString

@@ -1,1 +1,1 @@
-# analysis-explorer-web
+# web-explorer
