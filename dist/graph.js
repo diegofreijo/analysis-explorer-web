@@ -19,7 +19,7 @@ function drawGraph(elements) {
       .selector('.interproceduralEdge')
       .css({
         'curve-style': 'bezier',
-        'width': 4,
+        'width': 8,
         'target-arrow-shape': 'triangle',
         'line-color': '#9dbaea',
         'target-arrow-color': '#9dbaea'
@@ -27,7 +27,7 @@ function drawGraph(elements) {
       .selector('.intraproceduralEdge')
       .css({
         'curve-style': 'bezier',
-        'width': 4,
+        'width': 8,
         'target-arrow-shape': 'triangle',
         'line-color': '#ff0000',
         'target-arrow-color': '#ff0000'
