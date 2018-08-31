@@ -1,23 +1,11 @@
 module Main exposing (..)
 
--- import Basics exposing (..)
--- import List exposing (..)
--- import Maybe exposing (..)
--- import Result exposing (..)
--- import String
--- import Tuple
-
--- import Debug
-
--- import Platform exposing ( Program )
--- import Platform.Cmd as Cmd exposing ( Cmd )
--- import Platform.Sub as Sub exposing ( Sub )
-
 import Browser
+import Http exposing (Error(..), Response)
 import Html exposing (div, button, text)
-import JsonDecoder exposing (decode, JsonESG, JsonEG, JsonNode, JsonEdge)
+import JsonDecoder exposing (esgDecoder, JsonESG, JsonEG, JsonNode, JsonEdge)
 import Draw exposing (..)
-
+import RemoteData exposing (WebData, RemoteData(..))
 
 
 main : Program () Model Msg
@@ -35,6 +23,9 @@ main =
 
 
 type alias Model =
+    { esg: WebData ESG }
+
+type alias ESG =
     { nodes : List Node
     , edges : List Edge
     }
@@ -86,8 +77,8 @@ type alias Edge =
 -- CONSTANTS
 
 
-emptyModel : Model
-emptyModel =
+emptyESG : ESG
+emptyESG =
     { nodes = [], edges = [] }
 
 
@@ -109,7 +100,7 @@ intraproceduralEdgeClass : String
 intraproceduralEdgeClass =
     "intraproceduralEdge"
 
-
+ 
 
 -- INIT
 
@@ -117,31 +108,27 @@ intraproceduralEdgeClass =
 init : () -> ( Model, Cmd Msg )
 init _ =
     let
-        model =
-            case decode of
-                Ok jsonEsg ->
-                    convertEsg jsonEsg
-
-                Err error ->
-                    -- TODO: Improve this error handling
-                    emptyModel
+        model = { esg = NotAsked }
     in
-        ( model, drawGraph model )
+        ( model, Http.get "http://localhost:50427/api/values" esgDecoder
+            |> RemoteData.sendRequest
+            |> Cmd.map LoadESG
+        )
 
 
-convertEsg : JsonESG -> Model
+convertEsg : JsonESG -> ESG
 convertEsg { methods } =
     List.foldr
         (\m acc ->
-            Model
+            ESG
                 (List.append m.nodes acc.nodes)
                 (List.append m.edges acc.edges)
         )
-        emptyModel
+        emptyESG
         (List.indexedMap convertEg methods)
 
 
-convertEg : Int -> JsonEG -> Model
+convertEg : Int -> JsonEG -> ESG
 convertEg column { name, nodes, edges } =
     let
         x =
@@ -211,13 +198,28 @@ convertEdge nodes { origin, destination, kind } =
 
 
 type Msg
-    = Increment
-    | Decrement
-
+    = LoadESG (WebData JsonESG)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        LoadESG response ->
+            case response of
+                Success jsonEsg ->
+                    let
+                        esg = convertEsg jsonEsg
+                    in
+                        ( { esg = Success esg }, drawGraph esg )
+
+                Failure e ->
+                    ( { esg = Failure e }, Cmd.none)
+                
+                NotAsked ->
+                    ( { esg = NotAsked }, Cmd.none)
+                
+                Loading ->
+                    ( { esg = Loading }, Cmd.none)
+
 
 
 
@@ -226,12 +228,27 @@ update msg model =
 
 view : Model -> Html.Html Msg
 view model =
-    model.nodes
-        |> List.length
-        |> String.fromInt
-        |> (++) "#Nodes: "
-        |> text
+    case model.esg of
+        NotAsked -> text "Initialising"
 
+        Loading -> text "Loading."
+
+        Failure error -> text ("Error! " ++ viewHttpError error)
+
+        Success esg -> esg.nodes
+            |> List.length
+            |> String.fromInt
+            |> (++) "#Nodes: "
+            |> text
+
+viewHttpError : Http.Error -> String
+viewHttpError error = 
+    case error of
+        BadUrl url -> "BadUrl: " ++ url
+        Timeout -> "Timeout"
+        NetworkError -> "NetworkError"
+        BadStatus response -> "BadStatus: " ++ response.body
+        BadPayload decodingMsg response -> "BadPayload: " ++ decodingMsg ++ ". Response: " ++ response.body
 
 
 -- PORTS
