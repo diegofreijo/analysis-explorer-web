@@ -159,10 +159,10 @@ createMethodNode name id x =
 
 
 convertInstructionNode : NodeId -> Int -> Int -> JsonNode -> Node
-convertInstructionNode parent x row { id, kind } =
+convertInstructionNode parent x row { id, kind, description } =
     { data =
         { id = String.fromInt id
-        , name = "Instruction:\n" ++ String.fromInt id
+        , name = description
         , parent = Just parent
         }
     , classes = instructionClass

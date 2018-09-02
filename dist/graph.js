@@ -5,6 +5,10 @@ function drawGraph(elements) {
     autounselectify: true,
     boxSelectionEnabled: false,
 
+    // fit: false,
+    // zoom: 5,
+    wheelSensitivity: 0.1,
+
     style: cytoscape.stylesheet()
       .selector('node')
       .css({
@@ -165,8 +169,8 @@ function drawGraph(elements) {
 
     layout: {
       name: 'dagre',
-      // name: 'preset',
-      // padding: 5
+      fit: true,
+      padding: -400,
     }
   });
 }
