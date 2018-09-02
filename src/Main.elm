@@ -129,17 +129,17 @@ convertEsg { methods } =
 
 
 convertEg : Int -> JsonEG -> ESG
-convertEg column { name, nodes, edges } =
+convertEg column { description, nodes, edges } =
     let
         x =
             column * 250
 
         methodNode =
-            createMethodNode name name x
+            createMethodNode description description x
 
         newNodes =
             methodNode
-                :: List.indexedMap (convertInstructionNode name x) nodes
+                :: List.indexedMap (convertInstructionNode description x) nodes
     in
         { nodes = newNodes
         , edges = List.map (convertEdge newNodes) edges
