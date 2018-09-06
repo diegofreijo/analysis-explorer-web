@@ -150,7 +150,7 @@ createMethodNode : String -> NodeId -> Int -> Node
 createMethodNode name id x =
     { data =
         { id = id
-        , name = "Method:\n" ++ name
+        , name = name
         , parent = Nothing
         }
     , classes = methodClass
@@ -180,7 +180,7 @@ convertEdge nodes { origin, destination, kind } =
             (String.fromInt destination)
     in
         { data =
-            { id = (source ++ target)
+            { id = (source ++ "-" ++ target)
             , source = source
             , target = target
             }
@@ -192,8 +192,6 @@ convertEdge nodes { origin, destination, kind } =
 
 
 
--- HELPERS
--- wnodesWithParents : List Node ->  -> ()
 -- UPDATE
 
 
@@ -230,16 +228,11 @@ view : Model -> Html.Html Msg
 view model =
     case model.esg of
         NotAsked -> text "Initialising"
-
         Loading -> text "Loading."
-
         Failure error -> text ("Error! " ++ viewHttpError error)
-
-        Success esg -> esg.nodes
+        Success esg -> text ("JSON parsed! #Nodes: " ++ (esg.nodes
             |> List.length
-            |> String.fromInt
-            |> (++) "#Nodes: "
-            |> text
+            |> String.fromInt))
 
 viewHttpError : Http.Error -> String
 viewHttpError error = 

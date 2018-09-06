@@ -34,7 +34,6 @@ type alias JsonEdge =
 -- DECODER
 
 
-
 esgDecoder : Decoder JsonESG
 esgDecoder =
     map JsonESG

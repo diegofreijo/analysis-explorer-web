@@ -1,4 +1,4 @@
-port module Draw exposing (drawGraph, graph, instructionNode, Graph)
+port module Draw exposing (drawGraph, Graph)
 
 
 -- MODEL
@@ -56,16 +56,6 @@ type alias Edge =
 -- CONSTANTS
 
 
--- emptyModel : Graph
--- emptyModel =
-    -- { nodes = [], edges = [] }
-
-
--- instructionNodeClass : String
--- instructionClass =
---     "instruction"
-
-
 methodClass : String
 methodClass =
     "method"
@@ -84,23 +74,23 @@ intraproceduralEdgeClass =
 
 -- API
  
-instructionNode : String ->  String -> Maybe Node -> Int -> Int -> Node
-instructionNode id name parent x y = 
-    { data =
-        { id = id
-        , name = "Instruction: " ++ id
-        , parent = Maybe.map (\p -> p.data.id) parent
-        }
-    , classes = "node instruction"
-    , position = { x = x, y = y }
-    }
+-- instructionNode : String ->  String -> Maybe Node -> Int -> Int -> Node
+-- instructionNode id name parent x y = 
+--     { data =
+--         { id = id
+--         , name = "Instruction: " ++ id
+--         , parent = Maybe.map (\p -> p.data.id) parent
+--         }
+--     , classes = "node instruction"
+--     , position = { x = x, y = y }
+--     }
 
 
-graph : List Node -> List Edge -> Graph
-graph nodes edges = 
-    { nodes = nodes
-    , edges = edges
-    }
+-- graph : List Node -> List Edge -> Graph
+-- graph nodes edges = 
+--     { nodes = nodes
+--     , edges = edges
+--     }
 
 
 drawGraph : Graph -> Cmd msg
