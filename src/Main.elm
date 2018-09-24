@@ -110,7 +110,7 @@ init _ =
     let
         model = { esg = NotAsked }
     in
-        ( model, Http.get "http://localhost:50427/api/values" esgDecoder
+        ( model, Http.get "http://localhost:50427/api/ide" esgDecoder
             |> RemoteData.sendRequest
             |> Cmd.map LoadESG
         )
